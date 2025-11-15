@@ -1,0 +1,17 @@
+#show_solution {
+    font-size: medium;
+    margin-top: 20px;
+}
+
+#show_answer {
+    margin-top: 20px;
+    font-size: medium;
+}
+
+#answer {
+    display: none;
+}
+
+#solution {
+    display: none;
+}
