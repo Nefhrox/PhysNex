@@ -1,11 +1,13 @@
 #show_solution {
     font-size: medium;
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #show_answer {
-    margin-top: 20px;
     font-size: medium;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 #answer {
