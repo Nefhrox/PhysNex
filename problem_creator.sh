@@ -1,6 +1,6 @@
 # EXECUTION: go to desireble directory(topic/sub-topic) launch script by "bash problem_creator.sh"
 # Write number of a problem you want to create
-# New directory with new html file, src directory, css file and js file created
+# New directory with new html file, src directory, css file, js file and json file created
 
 echo -n "Problem number: "
 read NUM
@@ -8,6 +8,12 @@ read NUM
 # New directory and file name
 DIR="problem_$NUM"
 FILE="problem_$NUM.html"
+
+
+
+CURRENT_DIR="$(pwd)"                            
+SUB_TOPIC_NAME="$(dirname "$CURRENT_DIR")"
+
 
 
 # Check if directory already exist
@@ -125,15 +131,31 @@ EOF
 )
 
 
+json_text=$(cat << EOF
+{
+  "id": "$NUM",
+  "title": "",
+  "topic": "$SUB_TOPIC_NAME",
+  "subtopic": "$CURRENT_DIR",
+  "difficulty": "",
+  "type": ""
+}
+EOF
+)                                   #with this info will be easier to sort problems on names and difficulty
+
+
+
 
 touch "$DIR/$FILE"       #html file
 touch "$DIR/style.css"   #css file
 touch "$DIR/script.js"   #js script
+touch "$DIR/meta.json"   #json which is used to search problems using info iside it
+
 
 echo "$js_script_text" >> "./$DIR/script.js"     #enter code in script js form variable "js_script_text"
 echo "$html_text" >> "./$DIR/$FILE"              #enter code in html file from variable "html_text"
 echo "$css_text" >> "./$DIR/style.css"           #IMPORTANT: save "$" for normal script work
-
+echo "$json_text" >> "./$DIR/meta.json"
 
 
 #Debug
