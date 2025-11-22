@@ -78,7 +78,7 @@ html_text=$(cat << EOF
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/style.css">
 </head>
 
 <body>

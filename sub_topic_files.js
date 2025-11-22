@@ -1,3 +1,6 @@
+// EXECUTION: node read_all.js
+// PURPOSE: Read all info.json files from subdirectories and collect their data.
+
 import fs from 'fs';
 import PATH from 'path';
 
