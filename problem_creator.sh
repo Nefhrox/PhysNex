@@ -149,13 +149,13 @@ EOF
 touch "$DIR/$FILE"       #html file
 touch "$DIR/style.css"   #css file
 touch "$DIR/script.js"   #js script
-touch "$DIR/meta.json"   #json which is used to search problems using info iside it
+touch "$DIR/info.json"   #json which is used to search problems using info iside it
 
 
 echo "$js_script_text" >> "./$DIR/script.js"     #enter code in script js form variable "js_script_text"
 echo "$html_text" >> "./$DIR/$FILE"              #enter code in html file from variable "html_text"
 echo "$css_text" >> "./$DIR/style.css"           #IMPORTANT: save "$" for normal script work
-echo "$json_text" >> "./$DIR/meta.json"
+echo "$json_text" >> "./$DIR/info.json"
 
 
 #Debug
