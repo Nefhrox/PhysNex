@@ -127,6 +127,10 @@ css_text=$(cat << 'EOF'
 #solution {
     display: none;
 }
+.problem {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 EOF
 )
 
