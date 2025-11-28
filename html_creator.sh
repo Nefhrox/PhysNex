@@ -31,6 +31,8 @@ for DIR in *; do
         touch "./src/style.css"
         touch "$DIR.html"
 
+        DISPLAY_TITLE="${DIR//_/ }"   #Replace underscores with spaces for displaying title
+
 
 html_text=$(cat << EOF
 <!DOCTYPE html>
@@ -40,14 +42,14 @@ html_text=$(cat << EOF
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./src/style.css">
-    <title>Problems $DIR</title>
+    <title>$DISPLAY_TITLE</title>
 </head>
 
 <body>
 
-<h1>Problems on $DIR</h1>
+<h1>Problems on $DISPLAY_TITLE</h1>
 
-<h3>List of problems on $DIR</h3>
+<h3>List of problems on $DISPLAY_TITLE</h3>
 
 <ol>
     <li class="problem"><a href="./problem_1/problem_1.html">Problem 1</a></li>
