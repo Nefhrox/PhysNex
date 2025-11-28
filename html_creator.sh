@@ -30,8 +30,18 @@ for DIR in *; do
         mkdir -p "src"               #create src directory if it doesnt exist
         touch "./src/style.css"
         touch "$DIR.html"
+        touch "info.json"
 
         DISPLAY_TITLE="${DIR//_/ }"   #Replace underscores with spaces for displaying title
+
+
+json_text=$(cat << EOF
+{
+    "title": "$DISPLAY_TITLE",
+    "topic": "$(basename "$CURRENT_DIR")"
+}
+EOF
+)
 
 
 html_text=$(cat << EOF
@@ -64,6 +74,7 @@ EOF
 
         echo "$style_css_text" > "./src/style.css"
         echo "$html_text" > "$DIR.html"
+        echo "$json_text" > "info.json"
 
 
         popd >> /dev/null           #clear output of popd command
