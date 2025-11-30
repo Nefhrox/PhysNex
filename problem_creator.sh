@@ -142,7 +142,8 @@ json_text=$(cat << EOF
   "topic": "$SUB_TOPIC_NAME",
   "subtopic": "$CURRENT_DIR",
   "difficulty": "",
-  "type": ""
+  "type": "",
+  "directory": "$CURRENT_DIR/$DIR"
 }
 EOF
 )                                   #with this info will be easier to sort problems on names and difficulty
@@ -156,10 +157,10 @@ touch "$DIR/script.js"   #js script
 touch "$DIR/info.json"   #json which is used to search problems using info iside it
 
 
-echo "$js_script_text" >> "./$DIR/script.js"     #enter code in script js form variable "js_script_text"
-echo "$html_text" >> "./$DIR/$FILE"              #enter code in html file from variable "html_text"
-echo "$css_text" >> "./$DIR/style.css"           #IMPORTANT: save "$" for normal script work
-echo "$json_text" >> "./$DIR/info.json"
+echo "$js_script_text" > "./$DIR/script.js"     #enter code in script js form variable "js_script_text"
+echo "$html_text" > "./$DIR/$FILE"              #enter code in html file from variable "html_text"
+echo "$css_text" > "./$DIR/style.css"           #IMPORTANT: save "$" for normal script work
+echo "$json_text" > "./$DIR/info.json"
 
 
 #Debug
