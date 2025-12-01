@@ -1,3 +1,6 @@
+#!/bin/bash
+
+
 #EXECUTION 
 #go to desireble directory(topic) and launch script by "bash ../../html_creator.sh"
 # "../../" only if you are in topics directory such as Mechanics, Electricity, etc.

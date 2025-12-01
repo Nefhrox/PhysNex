@@ -1,3 +1,7 @@
+#!/bin/bash
+
+
+
 # EXECUTION: go to desireble directory(topic/sub-topic) launch script by "bash problem_creator.sh"
 # Write number of a problem you want to create
 # New directory with new html file, src directory, css file, js file and json file created

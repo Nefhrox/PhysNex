@@ -37,18 +37,14 @@
 
 ol {
     list-style: none;
-    counter-reset: topic-counter;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);   /* 4 columns max*/
     gap: 30px;
 }
 
-li.topic {
-    counter-increment: topic-counter;
-}
+
 
 li.topic ul {
-    counter-reset: subtopic-counter;
     flex: auto; 
     overflow: hidden;
     position: relative;
@@ -56,15 +52,13 @@ li.topic ul {
     margin: 0;
 }
 
-li.sub_topic {
-    counter-increment: subtopic-counter;
-}
 
-.sub_topic:nth-child(n+4) {
+
+.sub_topic:nth-child(n+4) {    /* hide sub-topics after the 3rd one */
     display: none; 
 }
 
-ul:has(li:nth-child(4))::after {
+ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and more */
     content: "... and more";
     position: absolute;
     bottom: 0;

@@ -1,0 +1,23 @@
+#show_solution {
+    font-size: medium;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#show_answer {
+    font-size: medium;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#answer {
+    display: none;
+}
+
+#solution {
+    display: none;
+}
+.problem {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
