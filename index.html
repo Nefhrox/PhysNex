@@ -11,6 +11,7 @@
 <body>
 
 <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>   <!--htmx library import-->
+<script src="./src/response.js"></script>
 
 
 <h1 class="welcome"><img src="./styles/physnex.png" id="physnex" alt="physnex icon">Welcome to the page!</h1>
@@ -23,12 +24,18 @@
 
 
 <div class="search">
-    <input type="text" id="search_bar" placeholder="Search for problems, topics or sub-topics">
+    <input type="search" id="search_bar" placeholder="Search for problems, topics or sub-topics" hx-trigger="keyup changed delay:500ms, search"
+    hx-get="/usr/lib/cgi-bin/read_all.sh" hx-target="#search_results" hx-swap="innerHTML" hx-params="query">
 </div>
 
+<div hx-swap="innerHTML" hx-get="/cgi-bin/test.sh">hello</div>
+
+<div id="search_results"></div>
 
 
 <h2 id="catalogue">Catalogue:</h2>
+
+
 
 
 
