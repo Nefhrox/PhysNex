@@ -11,7 +11,7 @@
 <body>
 
 <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js"></script>   <!--htmx library import-->
-<script src="./src/response.js"></script>
+<script type="module" src="./src/script.js"></script>
 
 
 <h1 class="welcome"><img src="./styles/physnex.png" id="physnex" alt="physnex icon">Welcome to the page!</h1>
@@ -24,14 +24,10 @@
 
 
 <div class="search">
-    <input type="search" id="search_bar" placeholder="Search for problems, topics or sub-topics" hx-trigger="keyup changed delay:500ms, search"
-    hx-get="/usr/lib/cgi-bin/read_all.sh" hx-target="#search_results" hx-swap="innerHTML" hx-params="query">
+    <input type="search" id="search_bar" placeholder="Search for problems, topics or sub-topics" oninput="performSearch(this.value)">
 </div>
 
-<div hx-swap="innerHTML" hx-get="/cgi-bin/test.sh">hello</div>
-
 <div id="search_results"></div>
-
 
 <h2 id="catalogue">Catalogue:</h2>
 
@@ -43,7 +39,7 @@
     <li class="topic">
         <div class="topic_header">
             <a href="./topics/Mechanics/Mechanics.html">Mechanics</a>
-            <img class="topic_icon" src="./styles/mechanics_icon.png" alt="Mechanics icon">
+            <img class="topic_icon" src="./styles/mechanics.png" alt="Mechanics icon">
         </div>
         <ul>
             <li class="sub_topic"><a href="./topics/Mechanics/Dynamics/Dynamics.html">Dynamics</a></li>
@@ -62,7 +58,7 @@
     <li class="topic">
         <div class="topic_header">
             <a href="./topics/Molecular_physics_and_Thermodynamics/Molecular_physics_and_Thermodynamics.html">Molecular physics and Thermodynamics</a>
-            <img class="topic_icon" src="./styles/icons/molecular.png" alt="Molecular physics icon">
+            <img class="topic_icon" src="./styles/molecular.png" alt="Molecular physics icon">
         </div>
         <ul>
             <li class="sub_topic"><a href="./topics/Molecular_physics_and_Thermodynamics/Ideal_Gas/Ideal_Gas.html">Ideal gas model</a></li>
@@ -77,7 +73,7 @@
     <li class="topic">
         <div class="topic_header">
             <a href="./topics/Electricity_and_Magnetism/Electricity_and_Magnetism.html">Electricity and Magnetism</a>
-            <img class="topic_icon" src="./styles/icons/electricity.png" alt="Electricity icon">
+            <img class="topic_icon" src="./styles/electricity.png" alt="Electricity icon">
         </div>
         <ul>
             <li class="sub_topic"><a href="./topics/Electricity_and_Magnetism/Electrostatics/Electricity_and_Magnetism.html">Electrostatics</a></li>
@@ -92,7 +88,7 @@
     <li class="topic">
         <div class="topic_header">
             <a href="./topics/Optics/Optics.html">Optics</a>
-            <img class="topic_icon" src="./styles/icons/optics.png" alt="Optics icon">
+            <img class="topic_icon" src="./styles/optics.png" alt="Optics icon">
         </div>
         <ul>
             <li class="sub_topic"><a href="./topics/Optics/Geometrical_Optics/Geometrical_Optics.html">Geometrical optics</a></li>
@@ -106,7 +102,7 @@
     <li class="topic">
         <div class="topic_header">
             <a href="./topics/Oscillations_and_Waves/Oscillations_and_Waves.html">Oscillations and Waves</a>
-            <img class="topic_icon" src="./styles/icons/oscillations.png" alt="Oscillations icon">
+            <img class="topic_icon" src="./styles/oscillations.png" alt="Oscillations icon">
         </div>
         <ul>
             <li class="sub_topic"><a href="./topics/Oscillations_and_Waves/Harmonic_Motion/Harmonic_Motion.html">Harmonic motion</a></li>
@@ -120,7 +116,7 @@
     <li class="topic">
         <div class="topic_header">
             <a href="./topics/Quantum_physics/Quantum_physics.html">Quantum physics</a>
-            <img class="topic_icon" src="./styles/icons/quantum.png" alt="Quantum icon">
+            <img class="topic_icon" src="./styles/quantum.png" alt="Quantum icon">
         </div>
         <ul>
             <li class="sub_topic"><a href="./topics/Quantum_physics/Photoelectric_Effect/Photoelectric_Effect.html">Photoelectric effect</a></li>
@@ -130,7 +126,7 @@
     <li class="topic">
         <div class="topic_header">
             <a href="./topics/Nuclear_physics/Nuclear_physics.html">Nuclear physics</a>
-            <img class="topic_icon" src="./styles/icons/nuclear.png" alt="Nuclear icon">
+            <img class="topic_icon" src="./styles/nuclear.png" alt="Nuclear icon">
         </div>
         <ul>
             <li class="sub_topic"><a href="./topics/Nuclear_physics/Radioactivity/Radioactivity.html">Radioactivity</a></li>
@@ -143,7 +139,7 @@
     <li class="topic">
         <div class="topic_header">
             <a href="./topics/Modern_physics/Modern_physics.html">Modern physics</a>
-            <img class="topic_icon" src="./styles/icons/modern.png" alt="Modern physics icon">
+            <img class="topic_icon" src="./styles/modern.png" alt="Modern physics icon">
         </div>
         <ul>
             <li class="sub_topic"><a href="./topics/Modern_physics/Relativity/Relativity.html">Special relativity</a></li>
