@@ -16,7 +16,7 @@ if [ $# -eq 0 ]; then                   #if there are no additional arguments li
         if [ -f "$INFOPATH" ]; then             #works only if therer are file called "info.json"
             INFO_CONTENT=$(cat "$INFOPATH")     #reads content from info.json
 
-            if [ $comma_needed -eq 1 ]; then       #wtites "," after each line
+            if [ $comma_needed -eq 1 ]; then       #writes "," after each line
                 echo ","
             fi
 
