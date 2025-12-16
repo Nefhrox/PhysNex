@@ -1,5 +1,7 @@
 let allData = { topics: [] };   // container for all data
 
+const MAX_RESULTS = 10;            //max number of results after search to prevent "... and more" on a page after results
+
 async function LoadDataFromDOM()                //async function for downloading data from nodes in DOM 
 {                     
     const topicList = document.querySelectorAll('ol > li.topic');     // select only topics
@@ -183,7 +185,8 @@ function checkProblems(problems, results, query, parentName)
             {
                 type: "problem",
                 title: problem.title,
-                directory: problem.directory
+                directory: problem.directory,
+                parent_directory: parentName
             }
             );
         }
@@ -193,13 +196,11 @@ function checkProblems(problems, results, query, parentName)
 
 window.performSearch = function(query) 
 {
-
     if (query.trim() === "") 
     {
         document.getElementById("search_results").innerHTML = "";
         return;
     }
-
 
     const result = search(query);
 
@@ -207,24 +208,43 @@ window.performSearch = function(query)
     {
 
         let html = "<ul>";
-        result.results.forEach(p => 
+        let current_results = 0;           //results counter
+
+
+        for (const p of result.results) 
         {
 
-            let label = "";
-            if (p.type === "topic") label = "[Topic] ";
-            else if (p.type === "subtopic") label = "[Subtopic] ";
-            else if (p.type === "problem") label = "[Problem] ";
-            
+            if (current_results >= MAX_RESULTS)
+            {
+                break;                            //stops search if therer are to many results
+            }
 
-            html += `<li>${label}<a href="${p.directory}">${p.title}</a></li>`;
-        });
+
+            if (p.type === "problem") 
+            {
+                html += `<li>[Problem] <a href="${p.directory}">${p.title}</a> in ${p.parent_directory}</li>`;
+            }
+
+            else if (p.type === "subtopic") 
+            {
+                html += `<li>[Sub-topic] <a href="${p.directory}">${p.title}</a></li>`;
+            }
+
+            else if (p.type === "topic")
+            {
+                html += `<li>[Topic] <a href="${p.directory}">${p.title}</a></li>`;
+            }
+
+            current_results++;
+        }
+
         html += "</ul>";
-
         document.getElementById("search_results").innerHTML = html;
-        return;
     }
 
+    else 
+    {
+        document.getElementById("search_results").innerHTML = "<p>No results found</p>";
+    }
     
-
-    document.getElementById("search_results").innerHTML = "<p>No results found </p>";
 };
