@@ -17,7 +17,7 @@ FILE="problem_$NUM.html"
 
 CURRENT_DIR="$(pwd)"                            
 SUB_TOPIC_NAME="$(dirname "$CURRENT_DIR")"
-
+LINK="$(basename "$CURRENT_DIR")"
 
 
 # Check if directory already exist
@@ -27,12 +27,8 @@ if [[ -d "$DIR" ]]; then
 fi
 
 
-# New directories
+# New directory
 mkdir "$DIR"
-mkdir "./$DIR/src"
-
-
-
 
 
 
@@ -66,6 +62,10 @@ html_text=$(cat << EOF
 <h3 id="solution">Solution: </h3>
 
 <script src="../../../src/answer_solution.js"></script>
+
+
+<h1 class="return"><a href="../$LINK.html">⬅ Back to $(basename "$LINK")  page</a></h1>
+<h1 class="return"><a href="../../../../index.html">⬅ Back to main page</a></h1>
 
 
 <h2 class="footer">About:</h2>
@@ -108,8 +108,6 @@ echo "$json_text" > "./$DIR/info.json"
 
 #Debug
 echo "Created directory: $DIR"
-echo "Created directory: $DIR/scr"
-
 echo "Created file: $DIR/$FILE"
 
 echo "exit"

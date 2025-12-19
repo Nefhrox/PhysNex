@@ -6,6 +6,11 @@
 # "../../" only if you are in topics directory such as Mechanics, Electricity, etc.
 
 
+#IMPORTANT 
+#after execution REWRITES all files in directories that are used as sub-topics(like Dynamics, Power, etc.)
+
+
+
 CURRENT_DIR="$(pwd)"                         #Current working directory
 FILE="$(basename "$CURRENT_DIR")"            #Name for files in current directory
 TOPIC_DIR="$(dirname "$CURRENT_DIR")"        #Topic directory path
@@ -45,7 +50,7 @@ html_text=$(cat << EOF
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="../../src/style.css">
     <title>$DISPLAY_TITLE</title>
 </head>
 
@@ -58,6 +63,10 @@ html_text=$(cat << EOF
 <ol>
     <li class="problem"><a href="./problem_1/problem_1.html">Problem 1</a></li>
 </ol>
+
+
+<h1 class="return"><a href="../$FILE.html">⬅ Back to $FILE page</a></h1>    
+<h1 class="return"><a href="../../../index.html">⬅ Back to main page</a></h1>
 
 <h2 class="footer">About:</h2>
 <p class="link"><a href="https://discord.gg/xFGw5Spd5V"><img src="../../../styles/discord_icon.png" class = "discord_icon" alt="Discord">Discord</a></p>
