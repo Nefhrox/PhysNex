@@ -80,6 +80,8 @@ async function loadProblemsForSub(subObj)
 
         const problemA = doc.querySelectorAll('ol > li.problem > a');
 
+        const problemPromises = [];
+
         for (const pA of problemA) 
         {
 
@@ -91,18 +93,48 @@ async function loadProblemsForSub(subObj)
 
             const fullPath = new URL(relHref, baseUrl).href;
 
+            const problemDir = fullPath.substring(0, fullPath.lastIndexOf('/'));
+            const jsonUrl = problemDir + '/info.json';
 
-            subObj.problems.push(
-            {
-                title,
-                directory: fullPath
-            }
+            problemPromises.push(
+                fetch(jsonUrl)
+                .then(res => 
+                    {
+                    if (!res.ok) 
+                    {
+                        throw new Error(`Failed to fetch ${jsonUrl}`);
+                    }
+                    return res.json();
+                })
+                .then(info => (
+                {
+                    title,
+                    directory: fullPath,
+                    difficulty: info.difficulty || 'N/A',
+                    problemType: info.type || 'N/A'
+                }))
+                .catch(err => {
+                    console.error(`Error fetching on ${title} at ${jsonUrl}:`, err.message);
+                    return {
+                        title,
+                        directory: fullPath,
+                        difficulty: 'N/A',
+                        problemType: 'N/A'
+                    };
+                })
             );
         }
+
+        const problems = await Promise.all(problemPromises);
+
+        for (const prob of problems) {
+            subObj.problems.push(prob);
+        }
+
     } 
     catch (error) 
     {
-        console.error(`Loading problems error on a: ${subObj.name} at ${subObj.path}:`, error.message);
+        console.error(`Error on: ${subObj.name} at ${subObj.path}:`, error.message);
     }
 }
 
@@ -186,7 +218,9 @@ function checkProblems(problems, results, query, parentName)
                 type: "problem",
                 title: problem.title,
                 directory: problem.directory,
-                parent_directory: parentName
+                parent_directory: parentName,
+                difficulty: problem.difficulty,
+                problemType: problem.problemType
             }
             );
         }
@@ -222,7 +256,7 @@ window.performSearch = function(query)
 
             if (p.type === "problem") 
             {
-                html += `<li>[Problem] <a href="${p.directory}">${p.title}</a> in ${p.parent_directory}</li>`;
+                html += `<li>[Problem] <a href="${p.directory}">${p.title}</a> in ${p.parent_directory} Difficulty ${p.difficulty}/10 Type: ${p.problemType}</li>`;
             }
 
             else if (p.type === "subtopic") 

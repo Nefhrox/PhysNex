@@ -9,6 +9,21 @@
 echo -n "Problem number: "
 read NUM
 
+echo "Problem difficulty 1(easy)-10(hard): "
+read DIFFICULTY
+
+echo "Type of problem 1(theory) or 2(calculation): "
+read TYPE
+
+if [[ $TYPE == "1" ]]; then
+    TYPE="theory"
+elif [[ $TYPE == "2" ]]; then
+    TYPE="calculation"
+else
+    echo "Wrong type"
+    exit
+fi
+
 # New directory and file name
 DIR="problem_$NUM"
 FILE="problem_$NUM.html"
@@ -50,6 +65,9 @@ html_text=$(cat << EOF
 
 <h1>Problem $NUM</h1>
 
+<p id="type">Type: $TYPE</p>
+<p id="difficulty">Difficulty: $DIFFICULTY/10</p>
+
 <h3 id="problem_text">Text of a problem: </h3>
 
 
@@ -87,8 +105,8 @@ json_text=$(cat << EOF
   "title": "",
   "topic": "$SUB_TOPIC_NAME",
   "subtopic": "$CURRENT_DIR",
-  "difficulty": "",
-  "type": "",
+  "difficulty": "$DIFFICULTY",
+  "type": "$TYPE",
   "directory": "$CURRENT_DIR/$DIR"
 }
 EOF

@@ -55,3 +55,8 @@
     margin-right: 7px;
     vertical-align: middle;
 }
+
+#type, #difficulty {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
