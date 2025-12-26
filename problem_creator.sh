@@ -68,7 +68,7 @@ html_text=$(cat << EOF
 <p id="type">Type: $TYPE</p>
 <p id="difficulty">Difficulty: $DIFFICULTY/10</p>
 
-<h3 id="problem_text">Text of a problem: </h3>
+<h3 id="problem_text">Text of a problem:  \( \pmb( ) \) </h3>
 
 
 
@@ -76,10 +76,14 @@ html_text=$(cat << EOF
 <button id="show_solution">Show Solution</button>
 
 
-<h3 id="answer">Answer: </h3>
-<h3 id="solution">Solution: </h3>
+<!-- for space in equations" \text { } "  -->
+<!-- \pmb is a font -->
+
+<h3 id="answer">Answer: \( \pmb( ) \) </h3>
+<h3 id="solution">Solution: \( \pmb( ) \) </h3>
 
 <script src="../../../src/answer_solution.js"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
 
 
 <h1 class="return"><a href="../$LINK.html">⬅ Back to $(basename "$LINK")  page</a></h1>
@@ -117,7 +121,7 @@ EOF
 
 touch "$DIR/$FILE"       #html file
 touch "$DIR/info.json"   #json which is used to search problems using info iside it
-
+mkdir "$DIR/src"              #directory for additional materials if is needed
 
 
 echo "$html_text" > "./$DIR/$FILE"              #enter code in html file from variable "html_text"
