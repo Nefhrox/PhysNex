@@ -68,7 +68,7 @@ html_text=$(cat << EOF
 <p id="type">Type: $TYPE</p>
 <p id="difficulty">Difficulty: $DIFFICULTY/10</p>
 
-<h3 id="problem_text">Text of a problem:  \( \pmb( ) \) </h3>
+<h3 id="problem_text">Text of a problem:  \( \pmb{} \) </h3>
 
 
 
@@ -79,8 +79,8 @@ html_text=$(cat << EOF
 <!-- for space in equations" \text { } "  -->
 <!-- \pmb is a font -->
 
-<h3 id="answer">Answer: \( \pmb( ) \) </h3>
-<h3 id="solution">Solution: \( \pmb( ) \) </h3>
+<h3 id="answer">Answer: \( \pmb{} \) </h3>
+<h3 id="solution">Solution: \( \pmb{} \) </h3>
 
 <script src="../../../src/answer_solution.js"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
