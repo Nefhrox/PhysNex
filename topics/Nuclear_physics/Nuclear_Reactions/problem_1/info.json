@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "title": "",
+  "topic": "/var/www/html/topics/Nuclear_physics",
+  "subtopic": "/var/www/html/topics/Nuclear_physics/Nuclear_Reactions",
+  "difficulty": "1",
+  "type": "calculation",
+  "directory": "/var/www/html/topics/Nuclear_physics/Nuclear_Reactions/problem_1"
+}

@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "title": "",
+  "topic": "/var/www/html/topics/Nuclear_physics",
+  "subtopic": "/var/www/html/topics/Nuclear_physics/Radioactivity",
+  "difficulty": "2",
+  "type": "calculation",
+  "directory": "/var/www/html/topics/Nuclear_physics/Radioactivity/problem_1"
+}
