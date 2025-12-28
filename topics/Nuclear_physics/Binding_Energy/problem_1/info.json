@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "title": "",
+  "topic": "/var/www/html/topics/Nuclear_physics",
+  "subtopic": "/var/www/html/topics/Nuclear_physics/Binding_Energy",
+  "difficulty": "3",
+  "type": "calculation",
+  "directory": "/var/www/html/topics/Nuclear_physics/Binding_Energy/problem_1"
+}
