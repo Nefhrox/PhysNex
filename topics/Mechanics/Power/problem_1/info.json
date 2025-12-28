@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "title": "",
+  "topic": "/var/www/html/topics/Mechanics",
+  "subtopic": "/var/www/html/topics/Mechanics/Power",
+  "difficulty": "2",
+  "type": "calculation",
+  "directory": "/var/www/html/topics/Mechanics/Power/problem_1"
+}

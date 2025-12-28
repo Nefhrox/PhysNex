@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "title": "",
+  "topic": "/var/www/html/topics/Mechanics",
+  "subtopic": "/var/www/html/topics/Mechanics/Statics",
+  "difficulty": "3",
+  "type": "calculation",
+  "directory": "/var/www/html/topics/Mechanics/Statics/problem_1"
+}

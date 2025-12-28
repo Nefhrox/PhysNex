@@ -77,7 +77,7 @@ html_text=$(cat << EOF
 
 
 <!-- for space in equations" \text { } "  -->
-<!-- \pmb is a font -->
+<!-- \pmb{} is a font -->
 
 <h3 id="answer">Answer: \( \pmb{} \) </h3>
 <h3 id="solution">Solution: \( \pmb{} \) </h3>
