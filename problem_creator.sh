@@ -12,7 +12,7 @@ read NUM
 echo "Problem difficulty 1(easy)-10(hard): "
 read DIFFICULTY
 
-echo "Type of problem 1(theory) or 2(calculation): "
+echo "Type of problem 1(theory) 2(calculation) 3(graphical): "
 read TYPE
 
 if [[ $TYPE == "1" ]]; then
@@ -79,8 +79,8 @@ html_text=$(cat << EOF
 <!-- for space in equations" \text { } "  -->
 <!-- \pmb{} is a font -->
 
-<h3 id="answer">Answer: \( \pmb{} \) </h3>
-<h3 id="solution">Solution: \( \pmb{} \) </h3>
+<h3 id="answer">Answer: <br> \( \pmb{} \) </h3>
+<h3 id="solution-heading">Solution: </h3>
 
 <script src="../../../src/answer_solution.js"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->

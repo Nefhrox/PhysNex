@@ -3,6 +3,7 @@ const SOLUTION_BUTTON = document.getElementById("show_solution");
 
 const ANSWER = document.getElementById("answer");
 const SOLUTION = document.getElementById("solution");
+const SOLUTION_HEADING = document.getElementById("solution-heading");
 
 
 
@@ -28,11 +29,13 @@ SOLUTION_BUTTON.addEventListener("click", () =>
     {
     if (SOLUTION.style.display === "none" || SOLUTION.style.display === "") 
         {
+        SOLUTION_HEADING.style.display = "block";
         SOLUTION.style.display = "block";
         SOLUTION_BUTTON.textContent = "Hide solution";
     } 
     else 
         {
+        SOLUTION_HEADING.style.display = "none";
         SOLUTION.style.display = "none";
         SOLUTION_BUTTON.textContent = "Show solution";
     }
