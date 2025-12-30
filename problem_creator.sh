@@ -80,11 +80,11 @@ html_text=$(cat << EOF
 <!-- \pmb{} is a font -->
 
 <h3 id="answer">Answer: <br> \( \pmb{} \) </h3>
-<img src"./" alt="answer_image" id="answer_image">
+<!-- <img src="./src/" alt="answer image" id="answer_image"> -->
 
 
-<h3 id="solution">Solution: <br> \( \pmb{} \)</h3>
-<img src="./src/" alt="solution_image" id="solution_image">
+<h3 id="solution">Solution: <br> \(\text{} \pmb{} \)</h3>
+<!-- <img src="./src/" alt="solution image" id="solution_image"> -->
 
 <script src="../../../src/answer_solution.js"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->

@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "title": "",
+  "topic": "/var/www/html/topics/Quantum_physics",
+  "subtopic": "/var/www/html/topics/Quantum_physics/Photoelectric_Effect",
+  "difficulty": "2",
+  "type": "calculation",
+  "directory": "/var/www/html/topics/Quantum_physics/Photoelectric_Effect/problem_1"
+}
