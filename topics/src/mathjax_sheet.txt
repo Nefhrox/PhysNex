@@ -1,0 +1,35 @@
+\( \)                              - start and end of a place where you should write all what you use from MathJax
+
+\text{}                            - regular text 
+
+\pmb{}                             - font
+
+\frac{numerator}{denumerator}      - fraction
+
+"numerator" \over "denumenator"    - same as frac  
+
+\times                             - multiplication (cross sign)
+
+\cdot                              - multiplication (dot sign)
+
+^{}                                - to the power of  
+
+_{}                                - subscripts
+
+\sqrt{}                            - square root of
+
+\approx                            - approximately equal
+
+\pi, \lamda, \rho...               - greek letters
+
+\Rightarrow                        - therefore
+
+\propto                            - directly proportional
+
+\Delta                             - delta sign
+
+\overset{}{}                       - put one sign on another
+
+
+more details here
+https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference/5024#5024
