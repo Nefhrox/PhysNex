@@ -19,6 +19,8 @@ if [[ $TYPE == "1" ]]; then
     TYPE="theory"
 elif [[ $TYPE == "2" ]]; then
     TYPE="calculation"
+elif [[ $TYPE == "3" ]]; then
+    TYPE="graphical"
 else
     echo "Wrong type"
     exit
@@ -32,8 +34,11 @@ FILE="problem_$NUM.html"
 
 CURRENT_DIR="$(pwd)"                            
 SUB_TOPIC_NAME="$(dirname "$CURRENT_DIR")"
-LINK="$(basename "$CURRENT_DIR")"
 
+TOPIC_LINK="$(basename "$CURRENT_DIR")"         #link for navigation to topic page on current webpage in page code 
+SUB_TOPIC_LINK=$(basename "$SUB_TOPIC_NAME")    #link for navigation to sub-topic page on current webpage in page code
+
+NEXT_PROBLEM=$((NUM + 1))
 
 # Check if directory already exist
 if [[ -d "$DIR" ]]; then
@@ -90,8 +95,12 @@ html_text=$(cat << EOF
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
 
 
-<h1 class="return"><a href="../$LINK.html">⬅ Back to $(basename "$LINK")  page</a></h1>
-<h1 class="return"><a href="../../../../index.html">⬅ Back to main page</a></h1>
+<h1 class="return"><a href="../../$NEXT_PROBLEM/problem_$NEXT_PROBLEM.html">➡ Go to problem $NEXT_PROBLEM</a></h1>
+
+<h1 class="return"><a href="../$TOPIC_LINK.html">⬅ Back to $TOPIC_LINK page</a></h1>
+<h1 class="return"><a href="../../$SUB_TOPIC_LINK.html">⬅ Back to $SUB_TOPIC_LINK page</a></h1>
+<h1 class="return"><a href="../../../../index.html">⬅ Back to Main page</a></h1>
+
 
 
 <h2 class="footer">About:</h2>

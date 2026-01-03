@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "title": "",
+  "topic": "/var/www/html/topics/Mechanics",
+  "subtopic": "/var/www/html/topics/Mechanics/Newton_s_laws",
+  "difficulty": "1",
+  "type": "calculation",
+  "directory": "/var/www/html/topics/Mechanics/Newton_s_laws/problem_2"
+}

@@ -34,6 +34,7 @@
     margin-top: 15%;
     text-align: center;
     font-size: 50px;
+    margin-bottom: 20px;
 }
 
 .link {
@@ -75,3 +76,8 @@
     width: 50%;
 }
 
+
+.return {
+    font-size: 27px;
+    margin-top: 25px;
+}
