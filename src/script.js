@@ -96,6 +96,16 @@ async function loadProblemsForSub(subObj)
             const problemDir = fullPath.substring(0, fullPath.lastIndexOf('/'));
             const jsonUrl = problemDir + '/info.json';
 
+
+            //Debug logs if needed
+
+            // console.log(`For problem "${title}":`);
+            // console.log(`  relHref: ${relHref}`);
+            // console.log(`  fullPath: ${fullPath}`);
+            // console.log(`  problemDir (before any changes): ${fullPath.substring(0, fullPath.lastIndexOf('/'))}`);
+            // console.log(`  jsonUrl: ${jsonUrl}`);           
+
+
             problemPromises.push(
                 fetch(jsonUrl)
                 .then(res => 
