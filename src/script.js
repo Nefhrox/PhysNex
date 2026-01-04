@@ -99,11 +99,11 @@ async function loadProblemsForSub(subObj)
 
             //Debug logs if needed
 
-            // console.log(`For problem "${title}":`);
-            // console.log(`  relHref: ${relHref}`);
-            // console.log(`  fullPath: ${fullPath}`);
-            // console.log(`  problemDir (before any changes): ${fullPath.substring(0, fullPath.lastIndexOf('/'))}`);
-            // console.log(`  jsonUrl: ${jsonUrl}`);           
+            console.log(`For problem "${title}":`);
+            console.log(`  relHref: ${relHref}`);
+            console.log(`  fullPath: ${fullPath}`);
+            console.log(`  problemDir (before any changes): ${fullPath.substring(0, fullPath.lastIndexOf('/'))}`);
+            console.log(`  jsonUrl: ${jsonUrl}`);           
 
 
             problemPromises.push(
