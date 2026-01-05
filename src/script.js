@@ -36,55 +36,54 @@ async function LoadDataFromDOM() //async function for downloading data from node
     }
     await Promise.all(promises);
 }
-async function loadProblemsForSub(subObj)
-{
-    try
-    {
-        console.log("Fetching subtopic page:", subObj.path);
+async function loadProblemsForSub(subObj) {
+    try {
         const response = await fetch(subObj.path);
-        if (!response.ok)
-        {
+        if (!response.ok) {
             throw new Error(`Fetch failed when: ${response.status}: ${subObj.path}`);
         }
         const html = await response.text();
-        const doc = new DOMParser().parseFromString(html, "text/html"); //parse DOM from fetched HTML
+        const doc = new DOMParser().parseFromString(html, "text/html");
         const problemA = doc.querySelectorAll('ol > li.problem > a');
         const problemPromises = [];
-        for (const pA of problemA)
-        {
+
+        for (const pA of problemA) {
             const title = pA.textContent.trim();
             const relHref = pA.getAttribute('href');
             const baseUrl = new URL(subObj.path, window.location.origin);
+            
             const fullPath = new URL(relHref, baseUrl).href;
+
             const problemDir = fullPath.substring(0, fullPath.lastIndexOf('/'));
-            
-            
-            
-            //Debug logs if needed
+
+            const jsonUrl = problemDir + '/info.json';
+
             console.log(`For problem "${title}":`);
-            console.log(` relHref: ${relHref}`);
+
+            console.log(` relHref: ${relHref}`);        
             console.log(` fullPath: ${fullPath}`);
             console.log(` problemDir: ${fullPath.substring(0, fullPath.lastIndexOf('/'))}`);
             console.log(` jsonUrl: ${jsonUrl}`);
+
+
+
+            
             problemPromises.push(
                 fetch(jsonUrl)
-                .then(res =>
-                    {
-                    if (!res.ok)
-                    {
+                .then(res => {
+                    if (!res.ok) {
                         throw new Error(`Failed to fetch ${jsonUrl}`);
                     }
                     return res.json();
                 })
-                .then(info => (
-                {
+                .then(info => ({
                     title,
-                    directory: fullPath,
+                    directory: fullPath, 
                     difficulty: info.difficulty || 'N/A',
-                    problemType: info.type || 'N/A'
+                    problemType: info.type || 'N/A' 
                 }))
                 .catch(err => {
-                    console.error(`Error fetching on ${title} at ${jsonUrl}:`, err.message);
+                    console.error(`Error fetching info for ${title}:`, err.message);
                     return {
                         title,
                         directory: fullPath,
@@ -98,10 +97,8 @@ async function loadProblemsForSub(subObj)
         for (const prob of problems) {
             subObj.problems.push(prob);
         }
-    }
-    catch (error)
-    {
-        console.error(`Error on: ${subObj.name} at ${subObj.path}:`, error.message);
+    } catch (error) {
+        console.error(`Error on subtopic: ${subObj.name} at ${subObj.path}:`, error.message);
     }
 }
 window.addEventListener("load", async () =>
@@ -182,12 +179,12 @@ window.performSearch = function(query)
     if (result.results)
     {
         let html = "<ul>";
-        let current_results = 0; //results counter
+        let current_results = 0;            //results counter
         for (const p of result.results)
         {
             if (current_results >= MAX_RESULTS)
             {
-                break; //stops search if therer are to many results
+                break;                  //stops search if therer are to many results
             }
             if (p.type === "problem")
             {
