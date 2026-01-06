@@ -77,6 +77,8 @@ html_text=$(cat << EOF
 
 <body>
 
+<div id="problem-number" style="display:none;">$NUM</div> <!-- for next_prev_problem.js -->
+
 <h1>Problem $NUM</h1>
 
 <p id="type">Type: $TYPE</p>
@@ -104,7 +106,7 @@ html_text=$(cat << EOF
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
 
 
-<h1 class="return"><a href="../problem_$NEXT_PROBLEM/problem_$NEXT_PROBLEM.html">Go to problem $NEXT_PROBLEM ➡</a></h1>
+<h1 class="return"><a href="../problem_$NEXT_PROBLEM/problem_$NEXT_PROBLEM.html">Go to problem $NEXT_PROBLEM <span id="next-problem">Difficulty: Type: </span>➡</a></h1>
 <h1 class="return"><a href="../problem_$PREV_PROBLEM_NUM/problem_$PREV_PROBLEM_NUM.html">$PREV_PROBLEM</a></h1>
 
 

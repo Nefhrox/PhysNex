@@ -101,6 +101,7 @@ async function loadProblemsForSub(subObj) {
         console.error(`Error on subtopic: ${subObj.name} at ${subObj.path}:`, error.message);
     }
 }
+
 window.addEventListener("load", async () =>
 {
     await LoadDataFromDOM();
