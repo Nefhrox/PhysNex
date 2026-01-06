@@ -103,11 +103,12 @@ html_text=$(cat << EOF
 <!-- <img src="./src/" alt="solution image" id="solution_image"> -->
 
 <script src="../../../src/answer_solution.js"></script>
+<script src="../../../../src/next_prev_problem.js"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
 
 
-<h1 class="return"><a href="../problem_$NEXT_PROBLEM/problem_$NEXT_PROBLEM.html">Go to problem $NEXT_PROBLEM <span id="next-problem">Difficulty: Type: </span>➡</a></h1>
-<h1 class="return"><a href="../problem_$PREV_PROBLEM_NUM/problem_$PREV_PROBLEM_NUM.html">$PREV_PROBLEM</a></h1>
+<h1 class="return"><a href="../problem_$NEXT_PROBLEM/problem_$NEXT_PROBLEM.html"><span id="next-problem"></span></a></h1>
+<h1 class="return"><a href="../problem_$PREV_PROBLEM_NUM/problem_$PREV_PROBLEM_NUM.html"><span id="prev-problem"></span></a></h1>
 
 
 <h1 class="return"><a href="../$TOPIC_LINK.html">⬅ Back to $TOPIC_LINK page</a></h1>
@@ -147,7 +148,7 @@ EOF
 
 touch "$DIR/$FILE"       #html file
 touch "$DIR/info.json"   #json which is used to search problems using info iside it
-mkdir "$DIR/src"              #directory for additional materials if is needed
+mkdir "$DIR/src"         #directory for additional materials if is needed
 
 
 echo "$html_text" > "./$DIR/$FILE"              #enter code in html file from variable "html_text"
