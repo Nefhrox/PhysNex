@@ -1,5 +1,7 @@
 let allData = { topics: [] }; // container for all data
 const MAX_RESULTS = 10; //max number of results after search to prevent "... and more" on a page after results
+
+
 async function LoadDataFromDOM() //async function for downloading data from nodes in DOM
 {
     const topicList = document.querySelectorAll('ol > li.topic'); // select only topics

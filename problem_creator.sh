@@ -39,7 +39,8 @@ DIRECTORY="$CURRENT_DIR/$DIR"
 
 SUB_TOPIC_NAME="$(dirname "$CURRENT_DIR")"
 
-REL_SUBTOPIC_PATH="${CURRENT_DIR#*/html/}" 
+#relative paths
+REL_SUBTOPIC_PATH="${CURRENT_DIR#*/html/}"     
 REL_TOPIC_PATH="${SUB_TOPIC_NAME#*/html/}"
 REL_DIRECTORY_PATH="${DIRECTORY#*/html/}"
 
@@ -105,6 +106,7 @@ html_text=$(cat << EOF
 <h3 id="solution">Solution: <br> \(\text{} \pmb{} \)</h3>
 <!-- <img src="./src/" alt="solution image" id="solution_image"> -->
 
+<button id="not_completed" class="not_completed">Not completed</button>
 
 <h1 class="return"><a href="../problem_$NEXT_PROBLEM/problem_$NEXT_PROBLEM.html"><span id="next-problem"></span></a></h1>
 <h1 class="return"><a href="../problem_$PREV_PROBLEM_NUM/problem_$PREV_PROBLEM_NUM.html"><span id="prev-problem"></span></a></h1>
@@ -113,8 +115,6 @@ html_text=$(cat << EOF
 <script src="../../../src/answer_solution.js"></script>
 <script src="../../../../src/next_prev_problem.js"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
-
-<button id="not_completed" class="not_completed">Not completed</button>
 
 <h1 class="return"><a href="../$TOPIC_LINK.html">⬅ Back to $TOPIC_LINK page</a></h1>
 <h1 class="return"><a href="../../$SUB_TOPIC_LINK.html">⬅ Back to $SUB_TOPIC_LINK page</a></h1>
@@ -143,8 +143,7 @@ json_text=$(cat << EOF
   "subtopic": "$REL_SUBTOPIC_PATH",
   "difficulty": "$DIFFICULTY",
   "type": "$TYPE",
-  "directory": "$REL_DIRECTORY_PATH",
-  "completed": 0
+  "directory": "$REL_DIRECTORY_PATH"
 }
 EOF
 )                         #with this info will be easier to sort problems on names and difficulty
