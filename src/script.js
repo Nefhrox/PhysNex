@@ -1,7 +1,6 @@
 let allData = { topics: [] }; // container for all data
 const MAX_RESULTS = 10; //max number of results after search to prevent "... and more" on a page after results
 
-
 async function LoadDataFromDOM() //async function for downloading data from nodes in DOM
 {
     const topicList = document.querySelectorAll('ol > li.topic'); // select only topics
@@ -82,7 +81,9 @@ async function loadProblemsForSub(subObj) {
                     title,
                     directory: fullPath, 
                     difficulty: info.difficulty || 'N/A',
-                    problemType: info.type || 'N/A' 
+                    problemType: info.type || 'N/A',
+                    id: info.id,
+                    subtopic: info.subtopic
                 }))
                 .catch(err => {
                     console.error(`Error fetching info for ${title}:`, err.message);
@@ -90,7 +91,9 @@ async function loadProblemsForSub(subObj) {
                         title,
                         directory: fullPath,
                         difficulty: 'N/A',
-                        problemType: 'N/A'
+                        problemType: 'N/A',
+                        id: null,
+                        subtopic: null
                     };
                 })
             );
@@ -104,10 +107,13 @@ async function loadProblemsForSub(subObj) {
     }
 }
 
+
 window.addEventListener("load", async () =>
 {
     await LoadDataFromDOM();
 });
+
+
 function search(query)
 {
     const lower = query.toLowerCase().trim();
@@ -165,7 +171,9 @@ function checkProblems(problems, results, query, parentName)
                 directory: problem.directory,
                 parent_directory: parentName,
                 difficulty: problem.difficulty,
-                problemType: problem.problemType
+                problemType: problem.problemType,
+                id: problem.id,
+                subtopic: problem.subtopic
             }
             );
         }
@@ -178,6 +186,12 @@ window.performSearch = function(query)
         document.getElementById("search_results").innerHTML = "";
         return;
     }
+
+    console.log("--- Current LocalStorage Contents ---");
+    for (let i = 0; i < localStorage.length; i++) {
+        console.log("Found in Storage:", localStorage.key(i));
+    }
+
     const result = search(query);
     if (result.results)
     {
@@ -187,11 +201,26 @@ window.performSearch = function(query)
         {
             if (current_results >= MAX_RESULTS)
             {
-                break;                  //stops search if therer are to many results
+                break;                  //stops search if there are to many results
             }
             if (p.type === "problem")
             {
-                html += `<li>[Problem] <a href="${p.directory}">${p.title}</a> in ${p.parent_directory} Difficulty ${p.difficulty}/10 Type: ${p.problemType}</li>`;
+
+                let clean_subtopic = p.subtopic || "";        //in case subtopic is undefined will be just ""
+
+                const topicsIndex = clean_subtopic.indexOf("topics/");
+                
+                if (topicsIndex !== -1) 
+                {
+                    clean_subtopic = clean_subtopic.substring(topicsIndex);
+                }
+
+                clean_subtopic = clean_subtopic.replace("'", "_");    //replace ' with "_" for proper localstorage key work
+
+                const LOCAL_KEY = `${clean_subtopic}/problem_${p.id}_status`;       //get localstorage key for problem status
+                const status = localStorage.getItem(LOCAL_KEY) || "Not completed";
+                
+                html += `<li>[Problem] <a href="${p.directory}">${p.title}</a> in ${p.parent_directory}, Difficulty ${p.difficulty}/10, Type: ${p.problemType}, Status: ${status}</li>`;
             }
             else if (p.type === "subtopic")
             {
