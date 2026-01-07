@@ -81,3 +81,21 @@
     font-size: 27px;
     margin-top: 25px;
 }
+
+.not_completed {
+    font-size: medium;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    font-size: 20px;
+    background-color: rgba(255, 0, 0, 0.884);
+}
+
+.completed {
+    font-size: medium;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    font-size: 20px;
+    background-color: rgba(0, 255, 0, 0.884);
+}

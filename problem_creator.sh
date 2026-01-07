@@ -32,20 +32,22 @@ FILE="problem_$NUM.html"
 
 
 
-CURRENT_DIR="$(pwd)"                            
+CURRENT_DIR="$(pwd)"
+
+DIRECTORY="$CURRENT_DIR/$DIR"
+
+
 SUB_TOPIC_NAME="$(dirname "$CURRENT_DIR")"
+
+REL_SUBTOPIC_PATH="${CURRENT_DIR#*/html/}" 
+REL_TOPIC_PATH="${SUB_TOPIC_NAME#*/html/}"
+REL_DIRECTORY_PATH="${DIRECTORY#*/html/}"
 
 TOPIC_LINK="$(basename "$CURRENT_DIR")"         #link for navigation to topic page on current webpage in page code 
 SUB_TOPIC_LINK=$(basename "$SUB_TOPIC_NAME")    #link for navigation to sub-topic page on current webpage in page code
 
 NEXT_PROBLEM=$((NUM + 1))
 PREV_PROBLEM_NUM=$((NUM - 1))
-
-if (( $NUM - 1 > 0 )); then                               # "(())" used for mathematical operations
-    PREV_PROBLEM="⬅ Go to previous problem "$((NUM - 1))""
-else
-    PREV_PROBLEM=""
-fi
 
 
 
@@ -77,7 +79,8 @@ html_text=$(cat << EOF
 
 <body>
 
-<div id="problem-number" style="display:none;">$NUM</div> <!-- for next_prev_problem.js -->
+<div id="problem-sub-topic" style="display:none;">$REL_SUBTOPIC_PATH</div> <!-- sub-topic for current problem for next_prev_problem.js -->
+<div id="problem-number" style="display:none;">$NUM</div> <!-- problem number for next_prev_problem.js -->
 
 <h1>Problem $NUM</h1>
 
@@ -102,14 +105,16 @@ html_text=$(cat << EOF
 <h3 id="solution">Solution: <br> \(\text{} \pmb{} \)</h3>
 <!-- <img src="./src/" alt="solution image" id="solution_image"> -->
 
-<script src="../../../src/answer_solution.js"></script>
-<script src="../../../../src/next_prev_problem.js"></script>
-<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
-
 
 <h1 class="return"><a href="../problem_$NEXT_PROBLEM/problem_$NEXT_PROBLEM.html"><span id="next-problem"></span></a></h1>
 <h1 class="return"><a href="../problem_$PREV_PROBLEM_NUM/problem_$PREV_PROBLEM_NUM.html"><span id="prev-problem"></span></a></h1>
 
+
+<script src="../../../src/answer_solution.js"></script>
+<script src="../../../../src/next_prev_problem.js"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
+
+<button id="not_completed" class="not_completed">Not completed</button>
 
 <h1 class="return"><a href="../$TOPIC_LINK.html">⬅ Back to $TOPIC_LINK page</a></h1>
 <h1 class="return"><a href="../../$SUB_TOPIC_LINK.html">⬅ Back to $SUB_TOPIC_LINK page</a></h1>
@@ -134,11 +139,12 @@ json_text=$(cat << EOF
 {
   "id": "$NUM",
   "title": "",
-  "topic": "$SUB_TOPIC_NAME",
-  "subtopic": "$CURRENT_DIR",
+  "topic": "$REL_TOPIC_PATH",
+  "subtopic": "$REL_SUBTOPIC_PATH",
   "difficulty": "$DIFFICULTY",
   "type": "$TYPE",
-  "directory": "$CURRENT_DIR/$DIR"
+  "directory": "$REL_DIRECTORY_PATH",
+  "completed": 0
 }
 EOF
 )                         #with this info will be easier to sort problems on names and difficulty

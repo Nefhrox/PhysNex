@@ -22,7 +22,7 @@ async function fetchNextProblemData(next_num)
         }
         else
         {
-            document.getElementById("next-problem").innerHTML = `Go to problem ${next_problem_num}: difficulty: ${data.difficulty} type: ${data.type} ➡`;
+            document.getElementById("next-problem").innerHTML = `Go to problem ${next_problem_num}: &nbsp; difficulty: ${data.difficulty} type: ${data.type} ➡`;
         }
     }
 
