@@ -13,7 +13,7 @@
 
 CURRENT_DIR="$(pwd)"                         #Current working directory
 FILE="$(basename "$CURRENT_DIR")"            #Name for files in current directory
-TOPIC_DIR="$(dirname "$CURRENT_DIR")"        #Topic directory path
+SUB_TOPIC_DIR="${CURRENT_DIR#*/html/}"
 
 
 
@@ -37,7 +37,8 @@ for DIR in *; do
 json_text=$(cat << EOF
 {
     "title": "$DISPLAY_TITLE",
-    "topic": "$(basename "$CURRENT_DIR")"
+    "topic": "$(basename "$CURRENT_DIR")",
+    "sub_topic_path": "$SUB_TOPIC_DIR"
 }
 EOF
 )
@@ -56,17 +57,21 @@ html_text=$(cat << EOF
 
 <body>
 
+<div id="sub-dir" style="display:none">${SUB_TOPIC_DIR}/${DIR}</div>
+
 <h1 id="sub_topic">Problems on $DISPLAY_TITLE</h1>
 
 <h3 id="list">List of problems on $DISPLAY_TITLE</h3>
 
 <ol>
-    <li class="problem"><a href="./problem_1/problem_1.html">Problem 1</a></li>
+    <li class="problem" data-id="1"><a href="./problem_1/problem_1.html">Problem 1</a><span class="problem-status"></span></li>
 </ol>
 
 
 <h1 class="return"><a href="../$FILE.html">⬅ Back to $FILE page</a></h1>    
 <h1 class="return"><a href="../../../index.html">⬅ Back to main page</a></h1>
+
+<script src="../../../src/sub_complete_status.js"></script>
 
 <h2 class="footer">About:</h2>
 <p class="link"><a href="https://discord.gg/xFGw5Spd5V"><img src="../../../styles/discord_icon.png" class = "discord_icon" alt="Discord">Discord</a></p>
@@ -86,5 +91,3 @@ EOF
         popd >> /dev/null           #clear output of popd command
     fi
 done
-
-

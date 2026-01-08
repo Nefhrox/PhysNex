@@ -6,7 +6,6 @@ const COMPLETED_STATUS = document.getElementById("not_completed");
 const PROBLEM_NUMBER = document.getElementById("problem-number").innerText;
 const PROBLEM_PATH = document.getElementById("problem-sub-topic").innerText;
 
-
 const KEY = `${PROBLEM_PATH}/problem_${PROBLEM_NUMBER}_status`;
 let current_status = localStorage.getItem(KEY);
 

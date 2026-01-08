@@ -69,11 +69,11 @@ if (prev_problem_num > 0)
 
                 if(PREV_KEY === null)
                 {
-                    document.getElementById("prev-problem").innerHTML = `⬅ Go to previous problem ${prev_problem_num}: &nbsp; difficulty: ${data.difficulty} type: ${data.type} &nbsp; status: Not completed`;
+                    document.getElementById("prev-problem").innerHTML = `⬅ Go to previous problem ${prev_problem_num}: &nbsp; difficulty: ${data.difficulty} &nbsp; type: ${data.type} &nbsp; status: Not completed`;
                 }
                 else
                 {
-                    document.getElementById("prev-problem").innerHTML = `⬅ Go to previous problem ${prev_problem_num}: &nbsp; difficulty: ${data.difficulty} type: ${data.type} &nbsp; status: ${PREV_KEY}`;
+                    document.getElementById("prev-problem").innerHTML = `⬅ Go to previous problem ${prev_problem_num}: &nbsp; difficulty: ${data.difficulty} &nbsp; type: ${data.type} &nbsp; status: ${PREV_KEY}`;
                 }
                 
             }

@@ -94,6 +94,7 @@ html_text=$(cat << EOF
 
 <button id ="show_answer">Show Answer</button>
 <button id="show_solution">Show Solution</button>
+<button id="not_completed" class="not_completed">Not completed</button>
 
 
 <!-- for space in equations" \text { } "  -->
@@ -105,8 +106,6 @@ html_text=$(cat << EOF
 
 <h3 id="solution">Solution: <br> \(\text{} \pmb{} \)</h3>
 <!-- <img src="./src/" alt="solution image" id="solution_image"> -->
-
-<button id="not_completed" class="not_completed">Not completed</button>
 
 <h1 class="return"><a href="../problem_$NEXT_PROBLEM/problem_$NEXT_PROBLEM.html"><span id="next-problem"></span></a></h1>
 <h1 class="return"><a href="../problem_$PREV_PROBLEM_NUM/problem_$PREV_PROBLEM_NUM.html"><span id="prev-problem"></span></a></h1>
