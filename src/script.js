@@ -37,6 +37,9 @@ async function LoadDataFromDOM() //async function for downloading data from node
     }
     await Promise.all(promises);
 }
+
+
+
 async function loadProblemsForSub(subObj) {
     try {
         const response = await fetch(subObj.path);
@@ -51,15 +54,15 @@ async function loadProblemsForSub(subObj) {
         for (const pA of problemA) {
             const title = pA.textContent.trim();
             const relHref = pA.getAttribute('href');
-            const baseUrl = new URL(subObj.path, window.location.origin);
-            
-            const fullPath = new URL(relHref, baseUrl).href;
 
-            const problemDir = fullPath.substring(0, fullPath.lastIndexOf('/'));
+            const baseUrl = new URL(subObj.path, window.location.href);
+            const fullUrlObj = new URL(relHref, baseUrl);
+            const fullPath = fullUrlObj.href;
 
-            const jsonUrl = problemDir + '/info.json';
+            const jsonUrl = fullPath.substring(0, fullPath.lastIndexOf('/')) + '/info.json';
 
             console.log(`For problem "${title}":`);
+            console.log(` jsonUrl: ${jsonUrl}`);
 
             console.log(` relHref: ${relHref}`);        
             console.log(` fullPath: ${fullPath}`);
@@ -154,6 +157,8 @@ function search(query)
     if (results.length) return { results };
     return { error: "No match found" };
 }
+
+
 function checkProblems(problems, results, query, parentName)
 {
     for (const problem of problems)
@@ -179,6 +184,9 @@ function checkProblems(problems, results, query, parentName)
         }
     }
 }
+
+
+
 window.performSearch = function(query)
 {
     if (query.trim() === "")
@@ -206,18 +214,16 @@ window.performSearch = function(query)
             if (p.type === "problem")
             {
 
-                let clean_subtopic = p.subtopic || "";        //in case subtopic is undefined will be just ""
-
-                const topicsIndex = clean_subtopic.indexOf("topics/");
+                let subPath = p.subtopic || "";
                 
-                if (topicsIndex !== -1) 
+                if (subPath.includes("topics/")) 
                 {
-                    clean_subtopic = clean_subtopic.substring(topicsIndex);
+                    subPath = subPath.substring(subPath.indexOf("topics/"));        //leaves only topics/sub-topic...
                 }
+                
+                subPath = subPath.replace(/'/g, "_");           //replace ' with "_" for clean paths
 
-                clean_subtopic = clean_subtopic.replace("'", "_");    //replace ' with "_" for proper localstorage key work
-
-                const LOCAL_KEY = `${clean_subtopic}/problem_${p.id}_status`;       //get localstorage key for problem status
+                const LOCAL_KEY = `${subPath}/problem_${p.id}_status`;
                 const status = localStorage.getItem(LOCAL_KEY) || "Not completed";
                 
                 html += `<li>[Problem] <a href="${p.directory}">${p.title}</a> in ${p.parent_directory}, Difficulty ${p.difficulty}/10, Type: ${p.problemType}, Status: ${status}</li>`;
