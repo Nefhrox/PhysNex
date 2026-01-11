@@ -48,7 +48,7 @@ TOPIC_LINK="$(basename "$CURRENT_DIR")"         #link for navigation to topic pa
 SUB_TOPIC_LINK=$(basename "$SUB_TOPIC_NAME")    #link for navigation to sub-topic page on current webpage in page code
 
 NEXT_PROBLEM=$((NUM + 1))
-PREV_PROBLEM_NUM=$((NUM - 1))
+PREV_PROBLEM=$((NUM - 1))
 
 
 
@@ -89,7 +89,7 @@ html_text=$(cat << EOF
 <p id="difficulty">Difficulty: $DIFFICULTY/10</p>
 
 <h3 id="problem_text">Text of a problem:  \( \pmb{} \) </h3>
-
+<!-- <img id="problem_image" src="" alt="problem image"> -->
 
 
 <button id ="show_answer">Show Answer</button>
@@ -101,14 +101,14 @@ html_text=$(cat << EOF
 <!-- \pmb{} is a font -->
 
 <h3 id="answer">Answer: <br> \( \pmb{} \) </h3>
-<!-- <img src="./src/" alt="answer image" id="answer_image"> -->
+<!-- <img src="answer_image" alt="answer image" -->
 
 
 <h3 id="solution">Solution: <br> \(\text{} \pmb{} \)</h3>
-<!-- <img src="./src/" alt="solution image" id="solution_image"> -->
+<!-- <img src="soltuion_image" alt="solution image" -->
 
 <h1 class="return"><a href="../problem_$NEXT_PROBLEM/problem_$NEXT_PROBLEM.html"><span id="next-problem"></span></a></h1>
-<h1 class="return"><a href="../problem_$PREV_PROBLEM_NUM/problem_$PREV_PROBLEM_NUM.html"><span id="prev-problem"></span></a></h1>
+<h1 class="return"><a href="../problem_$PREV_PROBLEM/problem_$PREV_PROBLEM.html"><span id="prev-problem"></span></a></h1>
 
 
 <script src="../../../src/answer_solution.js"></script>
