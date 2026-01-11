@@ -45,7 +45,7 @@ REL_TOPIC_PATH="${SUB_TOPIC_NAME#*/html/}"
 REL_DIRECTORY_PATH="${DIRECTORY#*/html/}"
 
 TOPIC_LINK="$(basename "$CURRENT_DIR")"         #link for navigation to topic page on current webpage in page code 
-SUB_TOPIC_LINK=$(basename "$SUB_TOPIC_NAME")    #link for navigation to sub-topic page on current webpage in page code
+SUB_TOPIC_LINK="$(basename "$SUB_TOPIC_NAME")"    #link for navigation to sub-topic page on current webpage in page code
 
 NEXT_PROBLEM=$((NUM + 1))
 PREV_PROBLEM=$((NUM - 1))

@@ -2,56 +2,57 @@
 
 #Script for replacing problem code with new one if there are changes 
 
-#EXECUTION: go to sub-topic directory and type "bash ../../../problem_template.sh"
+#EXECUTION: go to sub-topic directory and type "bash ../../problem_template.sh"
 
-#IMPORTANT: rewrites all problems in sub-topic with most recent code but text of a problems, solutions, answers remain 
+#IMPORTANT: rewrites all problems in topic with most recent code but text of a problems, solutions, answers remain 
 
 CURRENT_DIR="$(pwd)"
 
+TOPIC=$(echo "$CURRENT_DIR" | awk -F '/' '{print $NF}')
 
-for problem in problem_*; do 
-    if [ -d "$problem" ]; then
+for topics in */; do
+    echo "Go through $topics"
 
-    NUM=${problem#*problem_}
+    sub_topic=${topics%/}
 
-    NEXT_PROBLEM=$((NUM+1))
-    PREV_PROBLEM=$((NUM-1))
+    SUB_TOPIC_PATH="${CURRENT_DIR#*/html/}/$sub_topic"
 
-    REL_CURRENT_DIR="${CURRENT_DIR#*/html/}"
-    PROBLEM="$problem/problem_${NUM}"
+    for problem in "$topics"problem_*; do 
+        if [ -d "$problem" ]; then
 
-    #getting all needed information from current page
+        NUM=${problem##*_}
 
+        NEXT_PROBLEM=$((NUM+1))
+        PREV_PROBLEM=$((NUM-1))
 
-    PROBLEM_TEXT=$(grep 'id="problem_text"' "$PROBLEM.html" | sed 's/.*<h3[^>]*>//;s/<\/h3>.*//')
+        PROBLEM="$problem/problem_${NUM}.html"
 
-    #takes text only in specific line which starts with id="problem_text" 
-    #after this delets everything that is in front of h3 (.*<h3)
-    #[^>]*> means "anything except ">" in any combination before another ">" "  
-    # "//" means find and delete 
-    # ";" next command
-    # "<\/h3>" "\" is needed in case sed command is gonna try to execute a command if see a "/"
-    # ".*//" delete everything 
-
-    SOLUTION=$(grep 'id="solution"' "$PROBLEM.html" | sed 's/.*<h3[^>]*>//;s/<\/h3>.*//')
-
-    ANSWER=$(grep 'id="answer"' "$PROBLEM.html" | sed 's/.*<h3[^>]*>//;s/<\/h3>.*//')
-
-    TYPE=$(grep 'id="type"' "$PROBLEM.html" | sed 's/.*<p[^>]*>//;s/<\/p>.*//' | sed 's/Type: //g')
-
-    DIFFICULTY=$(grep 'id="difficulty"' "$PROBLEM.html" | sed 's/.*<p[^>]*>//;s/<\/p>.*//' | sed 's/Difficulty: //g; s/\/10//g')
-
-    PROBLEM_IMG=$(grep 'id="problem_image"' "$PROBLEM.html" | sed -n 's/.*src="\([^"]*\)".*/\1/p')
-
-    ANSWER_IMG=$(grep 'id="answer_image"' "$PROBLEM.html" | sed -n 's/.*src="\([^"]*\)".*/\1/p')
-
-    SOLUTION_IMG=$(grep 'id="solution_image"' "$PROBLEM.html" | sed -n 's/.*src="\([^"]*\)".*/\1/p')
-
-    SUB_TOPIC_LINK=$(echo "$REL_CURRENT_DIR" | awk -F '/' '{print$NF}')    #prints only latest directory in path
-
-    TOPIC_LINK=$(echo "$REL_CURRENT_DIR" | awk -F '/' '{print$(NF-1)}')
+        #getting all needed information from current page
 
 
+        PROBLEM_TEXT=$(grep 'id="problem_text"' "$PROBLEM" | sed 's/.*<h3[^>]*>//;s/<\/h3>.*//')
+
+        #takes text only in specific line which starts with id="problem_text" 
+        #after this delets everything that is in front of h3 (.*<h3)
+        #[^>]*> means "anything except ">" in any combination before another ">" "  
+        # "//" means find and delete 
+        # ";" next command
+        # "<\/h3>" "\" is needed in case sed command is gonna try to execute a command if see a "/"
+        # ".*//" delete everything 
+
+        SOLUTION=$(grep 'id="solution"' "$PROBLEM" | sed 's/.*<h3[^>]*>//;s/<\/h3>.*//')
+
+        ANSWER=$(grep 'id="answer"' "$PROBLEM" | sed 's/.*<h3[^>]*>//;s/<\/h3>.*//')
+
+        TYPE=$(grep 'id="type"' "$PROBLEM" | sed 's/.*<p[^>]*>//;s/<\/p>.*//' | sed 's/Type: //g')
+
+        DIFFICULTY=$(grep 'id="difficulty"' "$PROBLEM" | sed 's/.*<p[^>]*>//;s/<\/p>.*//' | sed 's/Difficulty: //g; s/\/10//g')
+
+        PROBLEM_IMG=$(grep 'id="problem_image"' "$PROBLEM" | sed -n 's/.*src="\([^"]*\)".*/\1/p')
+
+        ANSWER_IMG=$(grep 'id="answer_image"' "$PROBLEM" | sed -n 's/.*src="\([^"]*\)".*/\1/p')
+
+        SOLUTION_IMG=$(grep 'id="solution_image"' "$PROBLEM" | sed -n 's/.*src="\([^"]*\)".*/\1/p')
 
 
 #rewriting problem page with latest template
@@ -68,7 +69,7 @@ html_text=$(cat << EOF
 
 <body>
 
-<div id="problem-sub-topic" style="display:none;">$REL_CURRENT_DIR</div> <!-- sub-topic for current problem for next_prev_problem.js -->
+<div id="problem-sub-topic" style="display:none;">$SUB_TOPIC_PATH</div> <!-- sub-topic for current problem for next_prev_problem.js -->
 <div id="problem-number" style="display:none;">$NUM</div> <!-- problem number for next_prev_problem.js -->
 
 <h1>Problem $NUM</h1>
@@ -103,8 +104,8 @@ html_text=$(cat << EOF
 <script src="../../../../src/next_prev_problem.js"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
 
-<h1 class="return"><a href="../../$TOPIC_LINK.html">⬅ Back to $TOPIC_LINK page</a></h1>
-<h1 class="return"><a href="../$SUB_TOPIC_LINK.html">⬅ Back to $SUB_TOPIC_LINK page</a></h1>
+<h1 class="return"><a href="../../$TOPIC.html">⬅ Back to $TOPIC page</a></h1>
+<h1 class="return"><a href="../$sub_topic.html">⬅ Back to $sub_topic page</a></h1>
 <h1 class="return"><a href="../../../../index.html">⬅ Back to Main page</a></h1>
 
 
@@ -118,6 +119,7 @@ html_text=$(cat << EOF
 </html> 
 EOF
 )
-    echo "$html_text" > "$PROBLEM.html"
-    fi 
+        echo "$html_text" > "$PROBLEM"
+        fi 
+    done
 done
