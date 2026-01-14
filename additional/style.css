@@ -1,0 +1,44 @@
+#main {
+    font-size: 35px;
+    text-align: center;
+}
+
+.topic_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+.topic_icon {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);   /* 4 columns max*/
+    gap: 30px;
+}
+
+
+.topic {
+    font-size: 20px;
+    border-color: black;
+    border-style: solid;
+    border-width: 4px;
+    padding: 10px;
+    padding-left: 25%;
+    padding-right: 25%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 20px;
+    overflow: hidden;
+    outline: 2px solid black;
+    position: relative;
+    right: 2%;
+}

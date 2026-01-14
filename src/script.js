@@ -61,13 +61,16 @@ async function loadProblemsForSub(subObj) {
 
             const jsonUrl = fullPath.substring(0, fullPath.lastIndexOf('/')) + '/info.json';
 
-            console.log(`For problem "${title}":`);
-            console.log(` jsonUrl: ${jsonUrl}`);
 
-            console.log(` relHref: ${relHref}`);        
-            console.log(` fullPath: ${fullPath}`);
-            console.log(` problemDir: ${fullPath.substring(0, fullPath.lastIndexOf('/'))}`);
-            console.log(` jsonUrl: ${jsonUrl}`);
+            //Debug
+
+            // console.log(`For problem "${title}":`);
+            // console.log(` jsonUrl: ${jsonUrl}`);
+
+            // console.log(` relHref: ${relHref}`);        
+            // console.log(` fullPath: ${fullPath}`);
+            // console.log(` problemDir: ${fullPath.substring(0, fullPath.lastIndexOf('/'))}`);
+            // console.log(` jsonUrl: ${jsonUrl}`);
 
 
 
@@ -195,15 +198,18 @@ window.performSearch = function(query)
         return;
     }
 
-    console.log("--- Current LocalStorage Contents ---");
-    for (let i = 0; i < localStorage.length; i++) {
-        console.log("Found in Storage:", localStorage.key(i));
-    }
+
+    //Debug for local keys
+
+    // console.log("--- Current LocalStorage Contents ---");
+    // for (let i = 0; i < localStorage.length; i++) {
+    //     console.log("Found in Storage:", localStorage.key(i));
+    // }
 
     const result = search(query);
     if (result.results)
     {
-        let html = "<ul>";
+        let html = "<div>";
         let current_results = 0;            //results counter
         for (const p of result.results)
         {
@@ -226,19 +232,19 @@ window.performSearch = function(query)
                 const LOCAL_KEY = `${subPath}/problem_${p.id}_status`;
                 const status = localStorage.getItem(LOCAL_KEY) || "Not completed";
                 
-                html += `<li>[Problem] <a href="${p.directory}">${p.title}</a> in ${p.parent_directory}, Difficulty ${p.difficulty}/10, Type: ${p.problemType}, Status: ${status}</li>`;
+                html += `<div>[Problem] <a href="${p.directory}">${p.title}</a> in ${p.parent_directory}, Difficulty ${p.difficulty}/10, Type: ${p.problemType}, Status: ${status}</div>`;
             }
             else if (p.type === "subtopic")
             {
-                html += `<li>[Sub-topic] <a href="${p.directory}">${p.title}</a></li>`;
+                html += `<div>[Sub-topic] <a href="${p.directory}">${p.title}</a></div>`;
             }
             else if (p.type === "topic")
             {
-                html += `<li>[Topic] <a href="${p.directory}">${p.title}</a></li>`;
+                html += `<div>[Topic] <a href="${p.directory}">${p.title}</a></div>`;
             }
             current_results++;
         }
-        html += "</ul>";
+        html += "</div>";
         document.getElementById("search_results").innerHTML = html;
     }
     else

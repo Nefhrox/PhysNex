@@ -11,6 +11,8 @@
     height: 220px;
     overflow: hidden;
     position: relative;
+    outline: 2px solid black;
+    right: 6.5%;
 }
 
 .topic_header {
@@ -60,7 +62,7 @@ li.topic ul {
 
 ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and more */
     content: "... and more";
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -133,6 +135,21 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
     border-radius: 4px;
     font-size: 20px;
     float: center;
+    margin-bottom: 20px;
 }
 
+#search_results {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    font-size: 20px;
+}
 
+#formulae-constants {
+    font-size: 30px;
+    margin-top: 40px;
+    outline: 5px solid blue;
+    padding: 10px;
+    position: relative;
+    width: fit-content;
+    left: 38.5%;
+}
