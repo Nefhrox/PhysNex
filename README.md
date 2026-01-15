@@ -1,20 +1,20 @@
 # PhysNex
-Website for someone who enjoy physics
+Website for everyone who enjoys physics
 
 The idea of this webpage is to create place like "leetcode" but for physics
 
-I want to create a list of physics topics, each with a set of problems divided by difficulty and level of understanding. I also plan to write detailed explanations for each problem.
+I want to create a list of physics topics, each with a set of problems divided by difficulty and level of understanding.
 
 
 What already done:
 
-Diffrent problems types such as: calcularion, theoretical, graphical.
+Different problems types such as: calculation, theoretical, graphical.
 
 Difficulty gradation: every problem have own difficulty from 1 to 10.
 
 Problems tracking: integrated local storage to keep track of completed problems.
 
-Search function: you can search for topics, sub-topics and problems on main page. Also it shows problems difficulty, type and completition status.
+Search function: you can search for topics, sub-topics and problems on main page. Also it shows problems difficulty, type and completion status.
 
 Automation scripts such as problem creator(creates all main code automatically only text of a problem, solution and answer is needed), problem template(rewrite all problems in topic if there are any changes of problem code), sub-topic creator
 

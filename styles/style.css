@@ -147,9 +147,9 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
 #formulae-constants {
     font-size: 30px;
     margin-top: 40px;
-    outline: 5px solid blue;
+    outline: 5px solid rgb(0, 0, 0);
     padding: 10px;
     position: relative;
     width: fit-content;
-    left: 38.5%;
+    left: 40.8%;
 }

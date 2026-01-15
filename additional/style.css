@@ -20,7 +20,7 @@
 ul {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);   /* 4 columns max*/
+    grid-template-columns: repeat(2, 1fr);   /* 2 columns max*/
     gap: 30px;
 }
 
@@ -31,14 +31,56 @@ ul {
     border-style: solid;
     border-width: 4px;
     padding: 10px;
+    border-radius: 10px;
+    outline: 2px solid black;
+    width: content;
     padding-left: 25%;
     padding-right: 25%;
-    border-radius: 10px;
+    padding-top: 3%;
+    padding-bottom: 0%;
+}
+
+.topic_header {
     display: flex;
-    flex-direction: column;
-    height: 20px;
-    overflow: hidden;
-    outline: 2px solid black;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 25px;
+}
+
+#constants {
+    font-size: 30px;
+    margin-top: 40px;
+    outline: 5px solid rgb(0, 0, 0);
+    padding: 10px;
     position: relative;
-    right: 2%;
+    width: fit-content;
+    left: 41.3%;
+    padding: 17px;
+}
+
+.footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 50px;
+}
+
+.link {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+#gmail_icon {
+    width: 85px;
+    height: 55px;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+
+#discord_icon {
+    width: 70px;
+    height: 50px;
+    margin-right: 7px;
+    vertical-align: middle;
 }
