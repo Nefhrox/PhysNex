@@ -9,8 +9,103 @@
 
 
 <body>
+<script>
+  window.MathJax = {
+    loader: {load: ['[tex]/physics']},
+    tex: {
+      packages: {'[+]': ['physics']},
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']]
+    },
+    output: {
+      font: 'mathjax-modern' // Этот шрифт очень похож на стандартный Serif/Times
+    }
+  };
+</script>
+<script class="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
 
 
+<!-- Mechanics constants -->
+<h2 class="topic">Mechanics constants</h2>
+
+<p class="constant">\( \pmb{g = 9.81 \text{ m/s}^2}\) - acceleration due to gravity</p>
+
+<p class="constant">\( \pmb{G = 6.67 \cdot 10^{-11} \text{ } \frac{N \cdot m^2}{kg^2}}\) - gravitational constant</p>
+
+<p class="constant">\(\pmb{M_E \approx 5.97 \cdot 10^{24} \text{ kg}}\) - mass of Earth</p>
+
+<p class="constant">\(\pmb{R_E \approx 6.37 \cdot 10^6 \text{ m}}\) - radius of Earth</p>
+
+<p class="constant">\( \pmb{M_M \approx 7.36 \cdot 10^{22} \text{ kg}}\) - mass of Moon</p>
+
+<p class="constant">\(\pmb{R_M \approx 1.74 \cdot 10^6 \text{ m}}\) - radius of Moon</p>
+
+<p class="constant">\(\pmb{M_S \approx 1.99 \cdot 10^{30} \text{ kg}}\) - mass of Sun</p>
+
+<p class="constant">\(\pmb{R_S \approx 6.96 \cdot 10^8 \text{ m}}\) - radius of Sun</p>
+
+<p class="constant">\( \pmb{p_0 = 10^5 \text{ Pa}} \) - atmospheric pressure</p>
+
+<p class="constant">\(\pmb{\rho_{air} = 1.225 \text{ } \frac{kg}{m^3}}\) - density of air</p>
+
+<p class="constant">\(\pmb{\rho_{water} = 1000 \text{ } \frac{kg}{m^3}}\) - density of water</p>
+
+
+
+<!-- Electomagnetism constants -->
+
+<h2 class="topic">Electomagnetism constants</h2>
+
+<p class="constant">\( k = \pmb{9 \cdot 10^9 \text{ } \frac{N \cdot m^2}{C^2}}\) - Coulomb's constant</p>
+
+<p class="constant">\( \pmb{\epsilon_0 = 8.85 \text{ } \cdot 10^{-12} \frac{F}{m}} \) - permittivity of vacuum</p>
+
+<p class="constant">\( \pmb{\epsilon_a = 1} \) - permittivity of air</p>
+
+<p class="constant">\( \pmb{\mu_0 = 1.26 \cdot 10^{-6}} \text{ } N \cdot A^{-2} \) - vacuum magnetic permeability</p>
+
+<p class="constant">\( \pmb{e = 1.602 \cdot 10^{-19} \text{ C}} \) - elementary charge</p>
+
+
+
+<!-- Thermodynamics constants -->
+
+<h2 class="topic">Thermodynamics constants</h2>
+
+
+<p class="constant">\( \pmb{N_A = 6.02 \cdot 10^{23} \text{ mol}^{-1}} \) - Avogadro's number</p>
+
+<p class="constant">\( \pmb{k_B = 1.38 \cdot 10^{-23} \text{ } \frac{J}{K}} \) - Boltzmann constant</p>
+
+<p class="constant">\( \pmb{R = 8.31 \text{ } \frac{J}{mol \cdot K}} \) - universal gas constant</p>
+
+
+
+<!-- Nuclear physics constants -->
+
+<h2 class="topic">Nuclear physics constants</h2>
+
+<p class="constant">\( \pmb{m_p = 1.67 \cdot 10^{-27} \text{ kg}} \) - mass of proton</p>
+
+<p class="constant">\( \pmb{m_n = 1.67 \cdot 10^{-27} \text{ kg}} \) - mass of neutron</p>
+
+<p class="constant">\( \pmb{m_e = 9.11 \cdot 10^{-31} \text{ kg}} \) - mass of electron</p>
+
+<p class="constant">\( \pmb{u = 1.66 \cdot 10^{-27} \text{ kg}} \) - atomic mass unit</p>
+
+<!-- Quantum and Modern physics constants -->
+
+<h2 class="topic">Quantum and Modern physics constants</h2>
+
+<p class="constant">\( \pmb{h = 6.63 \cdot 10^{-34} \text{ J} \cdot \text{s}} \) - Planck's constant</p>
+
+<p class="constant">\( \pmb{c = 3.00 \cdot 10^8 \text{ } \frac{m}{s}} \) - speed of light in vacuum</p>
+
+
+<!-- Footer -->
+<h2 class="footer">About:</h2>
+<p class="link"><a href="https://discord.gg/xFGw5Spd5V" target="_blank"><img src="../../styles/discord_icon.png" id = "discord_icon" alt="Discord">Discord</a></p>
+<p class="link"><a href="mailto:physnex@gmail.com" target="_blank"><img src="../../styles/gmail_icon.png" id="gmail_icon" alt="Gmail">Gmail</a></p>
 
 </body>
 

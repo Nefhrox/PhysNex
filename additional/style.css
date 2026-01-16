@@ -5,10 +5,10 @@
 
 .topic_header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 10px;
     font-size: 25px;
+    width: fit-content;
 }
 
 .topic_icon {
@@ -26,18 +26,18 @@ ul {
 
 
 .topic {
-    font-size: 20px;
-    border-color: black;
-    border-style: solid;
     border-width: 4px;
     padding: 10px;
+    font-size: 20px;
+    border: 4px solid black;
     border-radius: 10px;
     outline: 2px solid black;
-    width: content;
-    padding-left: 25%;
-    padding-right: 25%;
-    padding-top: 3%;
-    padding-bottom: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    min-height: 40px;
 }
 
 .topic_header {
@@ -50,13 +50,16 @@ ul {
 
 #constants {
     font-size: 30px;
-    margin-top: 40px;
-    outline: 5px solid rgb(0, 0, 0);
+    margin: 40px auto 0 auto;
+    border: 4px solid black;
+    border-radius: 10px;
+    outline: 2px solid black;
     padding: 10px;
     position: relative;
     width: fit-content;
-    left: 41.3%;
+    display: block;
     padding: 17px;
+    border-width: 4px;
 }
 
 .footer {
