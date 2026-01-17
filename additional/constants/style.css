@@ -6,7 +6,12 @@
 .topic {
     text-align: center;
     font-size: 35px;
-    margin-top: 10px;
+}
+
+.sub-topic {
+    font-size: 30px;
+    margin-bottom: 35px;
+    margin-top: 50px;
 }
 
 .footer {
