@@ -1,5 +1,5 @@
-.constant {
-    font-size: 25px;
+.constant, .formulae {
+    font-size: 30px;
     gap: 15px;
 }
 
