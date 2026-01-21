@@ -13,6 +13,11 @@
     position: relative;
     outline: 2px solid black;
     right: 6.5%;
+    transition: box-shadow 0.5s;
+}
+
+.topic:hover {
+    box-shadow: 0px 0px 15px 15px rgba(17, 186, 175, 0.3);
 }
 
 .topic_header {
@@ -144,12 +149,38 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
     font-size: 20px;
 }
 
-#formulae-constants {
+.additional-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px;
+    margin-top: 30px;
+    padding: 0;
+    list-style: none;
+}
+
+.additional {
     font-size: 30px;
-    margin-top: 40px;
-    outline: 5px solid rgb(0, 0, 0);
-    padding: 10px;
-    position: relative;
-    width: fit-content;
-    margin: 40px auto 0 auto;
+    border: 4px solid black;
+    padding: 15px;
+    border-radius: 10px;
+    outline: 2px solid black;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    transition: box-shadow 0.5s;
+}
+
+.additional:hover {
+    box-shadow: 0px 0px 15px 15px rgba(17, 186, 175, 0.3); 
+}
+
+.Additional {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 50px;
+    font-weight: bold;
 }
