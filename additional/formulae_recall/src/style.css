@@ -1,0 +1,60 @@
+.header {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px;
+    margin-bottom: 55px;
+}
+
+.card {
+    font-size: 30px;
+    border: 4px solid black;
+    padding: 15px;
+    border-radius: 10px;
+    outline: 2px solid black;
+    text-align: center;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    margin: 0;
+    transition: box-shadow 0.5s;
+}
+
+.card:hover {
+    box-shadow: 0 0 15px 15px rgba(17, 186, 175, 0.3);
+}
+
+.link {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+#gmail_icon {
+    width: 85px;
+    height: 55px;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+
+#discord_icon {
+    width: 70px;
+    height: 50px;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+
+.footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 50px;
+}

@@ -18,10 +18,10 @@ Search function: you can search for topics, sub-topics and problems on main page
 
 Automation scripts such as problem creator(creates all main code automatically only text of a problem, solution and answer is needed), problem template(rewrite all problems in topic if there are any changes of problem code), sub-topic creator
 
+Page for constants and formulae 
 
 
 Current plans for this project:
 
-Adding page for every needed constant and formulae
 
 Formula recall
