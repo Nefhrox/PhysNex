@@ -1,27 +1,27 @@
-async function get_json() {
-    try 
-    {
-        const url = "./Mechanics.json";
-        const response = await fetch(url);
+// async function get_json() {
+//     try 
+//     {
+//         const url = "./Mechanics.json";
+//         const response = await fetch(url);
 
-        const results = await response.text();
+//         const results = await response.text();
 
-            if (!response.ok) 
-            {
-                throw new Error(`Error on ${response.status}`)
-            }
+//             if (!response.ok) 
+//             {
+//                 throw new Error(`Error on ${response.status}`)
+//             }
 
-        console.log("Mechanics json:", results);
+//         console.log("Mechanics json:", results);
 
     
-    } 
-    catch (error) 
-    {
-        console.error("Error fetching formulae:", error);
-    }
-} 
+//     } 
+//     catch (error) 
+//     {
+//         console.error("Error fetching formulae:", error);
+//     }
+// } 
 
-get_json();
+// get_json();
 
 
 
@@ -31,19 +31,53 @@ async function get_formulae() {
     try {
 
         const current_url = window.location.pathname.split("/").pop().replace(".html", "");
+        const url_params = new URLSearchParams(window.location.search);
 
+        const sub = url_params.get("sub");
+        const topic = url_params.get("topic");
+
+        console.log("Sub-topic:", sub);
+        console.log("Topic:", topic);
         console.log("Current URL:", current_url);
 
-        const url = `../../formulae/${current_url}_formulae/${current_url}_formulae.html`;
+        const url = `../../../additional/formulae/${topic}_formulae/${topic}_formulae.html`;
         const response = await fetch(url);
         const html_text = await response.text();
 
         const parser = new DOMParser();
         const doc = parser.parseFromString(html_text, "text/html");
 
-        const p_text = Array.from(doc.querySelectorAll("p.formulae"));
+        let sub_formulae = [];
 
-        const formulae_ready = p_text.map(p => {
+        const clean_sub_topic = sub.replace(/_/g, " ");
+
+        const headers = Array.from(doc.querySelectorAll("h2.sub-topic"));
+
+        const clean_header = headers.find(h => h.innerText.trim() === clean_sub_topic);
+
+        if(clean_header)
+        {
+            let current_e = clean_header.nextElementSibling;
+
+            while(current_e && current_e.tagName !== "H2")
+            {
+                if(current_e.classList.contains("formulae"))
+                {
+                    sub_formulae.push(current_e);
+                }
+                current_e = current_e.nextElementSibling;
+            }
+        }
+
+        else 
+        {
+            sub_formulae = Array.from(doc.querySelectorAll("p.formulae"));
+        }
+
+        console.log("headers:", clean_header);
+
+
+        const formulae_ready = sub_formulae.map(p => {
         const raw_formulae = p.innerText;
 
         last_dash = raw_formulae.lastIndexOf(" - ");   // find last "-" in text
@@ -61,6 +95,7 @@ async function get_formulae() {
         if (!response.ok) {
             throw new Error(`Error on ${response.status}`);
         }
+        
         console.log("Set of fetched formulae: ", formulae_ready);
 
 
@@ -70,7 +105,7 @@ async function get_formulae() {
 
         if(formulae_container)
         {
-            // formulae_container.innerHTML = page_formulae;    //write all formulae on a page
+            formulae_container.innerHTML = page_formulae;    //write all formulae on a page
         }
 
         if(window.MathJax)
