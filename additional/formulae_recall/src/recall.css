@@ -1,3 +1,65 @@
 #formulae_container {
     font-size: 25px;
 }
+
+.link {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 10px;
+}
+
+#gmail_icon {
+    width: 85px;
+    height: 55px;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+
+#discord_icon {
+    width: 70px;
+    height: 50px;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+
+.footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 50px;
+}
+
+
+
+#formulae_container {
+    font-size: 25px;
+}
+
+
+.card {
+    margin: 70px 0px 0px 15%;
+    width: 70%;
+    border: 5px solid #000;
+    border-radius: 15px;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card .back { 
+    display: none; 
+}
+
+.card.flipped .front { 
+    display: none;
+}
+
+.card.flipped .back {
+    display: block;
+}
+
+.next_card {
+    margin: 50px 0px 40px 40%;
+    padding: 15px 30px;
+    font-size: 30px;
+}

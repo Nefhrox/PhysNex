@@ -1,28 +1,55 @@
-// async function get_json() {
-//     try 
-//     {
-//         const url = "./Mechanics.json";
-//         const response = await fetch(url);
+let current_deck = [];
+let current_deck_index = 0;
 
-//         const results = await response.text();
 
-//             if (!response.ok) 
-//             {
-//                 throw new Error(`Error on ${response.status}`)
-//             }
 
-//         console.log("Mechanics json:", results);
+//Fisher-Yates shuffle algorithm
 
-    
-//     } 
-//     catch (error) 
-//     {
-//         console.error("Error fetching formulae:", error);
-//     }
-// } 
+function shuffle(array) 
+{
+    for (let i = array.length - 1; i > 0; i--) 
+    {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
-// get_json();
 
+
+function show_card() 
+{
+    const container = document.getElementById("formulae_container");
+    const item = current_deck[current_deck_index];
+
+
+    container.innerHTML = `
+        <div class="card_container">
+            <div class="card" onclick="this.classList.toggle('flipped')">
+                <div class="front">
+                    <p class="label">Name:</p>
+                    <p class="text">${item.name}</p>
+                </div>
+                <div class="back">
+                    <p class="label">${item.name}</p>
+                    <p class="text">${item.latex}</p>
+                </div>
+            </div>
+            <button class="next_card" onclick="nextCard()">Next formula →</button>
+        </div>
+    `;
+
+    if (window.MathJax) 
+    {
+        MathJax.typesetPromise();
+    }
+}
+
+function nextCard() {
+    current_deck_index = (current_deck_index + 1) % current_deck.length; 
+    console.log("Current index:", current_deck_index);
+    show_card();
+}
 
 
 
@@ -92,6 +119,17 @@ async function get_formulae() {
         return null; 
         }).filter(item => item !== null);      // delete text that doesnt have "-"
 
+
+
+        if (formulae_ready.length > 0)
+        {
+            current_deck = shuffle(formulae_ready);
+            current_deck_index = 0;
+            show_card();
+        }
+
+
+
         if (!response.ok) {
             throw new Error(`Error on ${response.status}`);
         }
@@ -99,21 +137,11 @@ async function get_formulae() {
         console.log("Set of fetched formulae: ", formulae_ready);
 
 
-        const page_formulae = formulae_ready.map(f => `<p class="formulae">${f.latex} - ${f.name}</p>`).join("");
-
-        const formulae_container = document.getElementById("formulae_container");
-
-        if(formulae_container)
-        {
-            formulae_container.innerHTML = page_formulae;    //write all formulae on a page
-        }
-
         if(window.MathJax)
         {
             MathJax.typesetPromise();
         }
 
-        return formulae_ready;
     }
     catch (error) {
         console.error("Error: ", error);
