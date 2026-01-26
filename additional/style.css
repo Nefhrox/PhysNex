@@ -1,6 +1,7 @@
 #main {
-    font-size: 35px;
+    font-size: 45px;
     text-align: center;
+    margin-bottom: 50px;
 }
 
 .topic_header {
@@ -11,17 +12,12 @@
     width: fit-content;
 }
 
-.topic_icon {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-}
 
 ul {
     list-style: none;
     display: grid;
     grid-template-columns: repeat(2, 1fr);   /* 2 columns max*/
-    gap: 30px;
+    gap: 40px;
 }
 
 
@@ -37,7 +33,7 @@ ul {
     align-items: center;
     text-align: center;
     padding: 20px;
-    min-height: 40px;
+    min-height: 70px;
     transition: box-shadow 0.5s;
 }
 
@@ -51,11 +47,11 @@ ul {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    font-size: 25px;
+    font-size: 35px;
 }
 
 #constants {
-    font-size: 30px;
+    font-size: 40px;
     margin: 40px auto 0 auto;
     border: 4px solid black;
     border-radius: 10px;
@@ -82,7 +78,7 @@ ul {
 
 .link {
     text-align: center;
-    font-size: 40px;
+    font-size: 45px;
     margin-top: 10px;
 }
 
