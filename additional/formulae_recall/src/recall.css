@@ -46,6 +46,12 @@
     justify-content: center;
 }
 
+.card:hover {
+    cursor: pointer;
+    background-color: #ececec;
+    transition: 0.2s;
+}
+
 .card .back { 
     display: none; 
 }
