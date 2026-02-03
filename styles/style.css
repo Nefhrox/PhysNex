@@ -1,3 +1,7 @@
+/* html {
+    background-color: rgb(0, 0, 0);
+} */
+
 .topic {
     font-size: 20px;
     border-color: black;
@@ -17,7 +21,10 @@
 }
 
 .topic:hover {
-    box-shadow: 0px 0px 15px 15px rgba(17, 186, 175, 0.3);
+    box-shadow: 0px 0px 15px rgba(17, 186, 175, 0.3),
+                0px 0px 25px rgba(17, 186, 175, 0.3),
+                0px 0px 50px rgba(17, 186, 175, 0.3),
+                0px 0px 150px rgba(17, 186, 175, 0.3);
 }
 
 .topic_header {
@@ -176,7 +183,10 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
 }
 
 .additional:hover {
-    box-shadow: 0px 0px 15px 15px rgba(17, 186, 175, 0.3); 
+    box-shadow: 0px 0px 15px rgba(17, 186, 175, 0.3),
+                0px 0px 25px rgba(17, 186, 175, 0.3),
+                0px 0px 50px rgba(17, 186, 175, 0.3),
+                0px 0px 150px rgba(17, 186, 175, 0.3);
 }
 
 .Additional {
