@@ -1,3 +1,16 @@
+:root {
+    --bg-color: #121212;
+}
+
+body {
+    background-color: #121212;
+}
+
+
+h1 {
+    color: white;
+}
+
 #show_solution {
     font-size: medium;
     margin-top: 10px;
@@ -17,16 +30,20 @@
     display: none;
     margin-bottom: 30px;
     font-size: 30px;
+    color: white;
 }
 
 #solution {
     display: none;
     margin-top: 65px;
     font-size: 30px;
+    color: white;
+    margin-bottom: 8% ;
 }
 
 #problem_text {
     font-size: 32px;
+    color: white;
 }
 
 
@@ -35,6 +52,7 @@
     text-align: center;
     font-size: 50px;
     margin-bottom: 20px;
+    color: white;
 }
 
 .link {
@@ -60,6 +78,7 @@
 #type, #difficulty {
     font-size: 24px;
     margin-bottom: 10px;
+    color: white;
 }
 
 #problem_image {
@@ -77,9 +96,14 @@
 }
 
 
-.return {
+.return, .return_first {
     font-size: 27px;
     margin-top: 25px;
+    text-align: center;
+}
+
+.return_first {
+    margin-top: 5%;
 }
 
 .not_completed {
@@ -97,4 +121,14 @@
     margin-left: 15px;
     font-size: 20px;
     background-color: rgba(0, 255, 0, 0.884);
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.5s ease;
+}
+
+a:hover {
+    color: rgb(0, 255, 0);
 }

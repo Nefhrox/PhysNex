@@ -48,7 +48,7 @@ async function loadProblemsForSub(subObj) {
         }
         const html = await response.text();
         const doc = new DOMParser().parseFromString(html, "text/html");
-        const problemA = doc.querySelectorAll('ol > li.problem > a');
+        const problemA = doc.querySelectorAll('div > p.problem > a');
         const problemPromises = [];
 
         for (const pA of problemA) {
@@ -232,15 +232,15 @@ window.performSearch = function(query)
                 const LOCAL_KEY = `${subPath}/problem_${p.id}_status`;
                 const status = localStorage.getItem(LOCAL_KEY) || "Not completed";
                 
-                html += `<div>[Problem] <a href="${p.directory}">${p.title}</a> in ${p.parent_directory}, Difficulty ${p.difficulty}/10, Type: ${p.problemType}, Status: ${status}</div>`;
+                html += `<div class = "search_text">[Problem] <a href="${p.directory}" class = "search_div">${p.title}</a> in ${p.parent_directory}, Difficulty ${p.difficulty}/10, Type: ${p.problemType}, Status: ${status}</div>`;
             }
             else if (p.type === "subtopic")
             {
-                html += `<div>[Sub-topic] <a href="${p.directory}">${p.title}</a></div>`;
+                html += `<div class = "search_text">[Sub-topic] <a href="${p.directory}" class = "search_div">${p.title}</a></div>`;
             }
             else if (p.type === "topic")
             {
-                html += `<div>[Topic] <a href="${p.directory}">${p.title}</a></div>`;
+                html += `<div class = "search_text">[Topic] <a href="${p.directory}" class = "search_div">${p.title}</a></div>`;
             }
             current_results++;
         }

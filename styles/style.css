@@ -1,10 +1,18 @@
-/* html {
-    background-color: rgb(0, 0, 0);
-} */
+:root {
+    --bg-color: #121212;
+}
+
+body {
+    background-color: #121212;
+}
+
+a {
+    text-decoration: none;
+}
 
 .topic {
     font-size: 20px;
-    border-color: black;
+    border-color: rgb(17, 186, 175);
     border-style: solid;
     border-width: 4px;
     padding: 10px;
@@ -39,12 +47,21 @@
     width: 80px;
     height: 80px;
     object-fit: contain;
+    filter: invert(1);
+    mix-blend-mode: screen;
 }
 
 .sub_topic {
     margin-top: 10px;
     margin-bottom: 10px;
     font-size: 20px;
+    color: white; 
+    text-decoration: none;
+    transition: color 0.5s ease;
+}
+
+.sub_topic:hover {
+    color: rgb(0, 226, 0);
 }
 
 
@@ -78,8 +95,8 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
     bottom: 0;
     left: 0;
     width: 100%;
-    text-align: center;
     padding: 5px 0;
+    color: white
 }
 
 
@@ -87,6 +104,7 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
     margin-top: 50px;
     text-align: center;
     font-size: 50px;
+    color: white;
 }
 
 .link {
@@ -114,6 +132,7 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
     margin-bottom: 40px;
     font-size: 35px;
     text-align: center;
+    color: white;
 }
 
 
@@ -121,6 +140,7 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
     text-align: center;
     font-size: 45px;
     margin-bottom: 50px;
+    color: white;
 }
 
 #physnex {
@@ -138,6 +158,7 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
     font-size: 20px;
     display: block;
     float: center;
+    filter: invert(1);
 }
 
 #search_bar {
@@ -152,9 +173,10 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
 }
 
 #search_results {
-    margin-top: 12px;
-    margin-bottom: 12px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     font-size: 20px;
+    color: white;
 }
 
 .additional-grid {
@@ -171,10 +193,9 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
     border: 4px solid black;
     padding: 15px;
     border-radius: 10px;
-    outline: 2px solid black;
+    outline: 2px solid rgb(17, 186, 175);
     text-align: center;
     text-decoration: none;
-    color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -194,4 +215,24 @@ ul:has(li:nth-child(4))::after {   /* if there 3 sub-topics will be "... and mor
     text-align: center;
     margin-top: 50px;
     font-weight: bold;
+    color: white;
+}
+
+.search_div {
+    color: rgb(0, 211, 226);
+    text-decoration: none;
+}
+
+.search_text {
+    padding: 5px;
+    font-size: 22px;
+}
+
+a {
+    color: white;
+    transition: color 0.5s ease;
+}
+
+a:hover {
+    color: rgb(0, 226, 0)
 }
