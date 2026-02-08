@@ -1,0 +1,7 @@
+node_modules/
+
+supabase-client.ts
+
+package-lock.json
+
+package.json
