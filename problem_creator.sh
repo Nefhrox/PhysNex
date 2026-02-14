@@ -107,16 +107,16 @@ html_text=$(cat << EOF
 <h3 id="solution">Solution: <br> \(\text{} \pmb{} \)</h3>
 <!-- <img src="soltuion_image" alt="solution image" -->
 
-<h1 class="return"><a href="../problem_$NEXT_PROBLEM/problem_$NEXT_PROBLEM.html"><span id="next-problem"></span></a></h1>
-<h1 class="return"><a href="../problem_$PREV_PROBLEM/problem_$PREV_PROBLEM.html"><span id="prev-problem"></span></a></h1>
+<h1 class="return_next"><a href="../problem_$NEXT_PROBLEM/problem_$NEXT_PROBLEM.html"><span id="next-problem"></span></a></h1>
+<h1 class="return_prev"><a href="../problem_$PREV_PROBLEM/problem_$PREV_PROBLEM.html"><span id="prev-problem"></span></a></h1>
 
 
 <script src="../../../src/answer_solution.js"></script>
 <script src="../../../../src/next_prev_problem.js"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
 
-<h1 class="return"><a href="../$TOPIC_LINK.html">⬅ Back to $TOPIC_LINK page</a></h1>
-<h1 class="return"><a href="../../$SUB_TOPIC_LINK.html">⬅ Back to $SUB_TOPIC_LINK page</a></h1>
+<h1 class="return_first"><a href="../../$TOPIC_LINK.html">⬅ Back to $TOPIC_LINK page</a></h1>
+<h1 class="return"><a href="../$SUB_TOPIC_LINK.html">⬅ Back to $SUB_TOPIC_LINK page</a></h1>
 <h1 class="return"><a href="../../../../index.html">⬅ Back to Main page</a></h1>
 
 

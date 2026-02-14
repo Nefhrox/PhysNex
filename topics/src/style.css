@@ -127,6 +127,11 @@ a:hover {
 
 .return {
     margin-top: 15%;
+    font-size: 35px;
+}
+
+.return_main {
+    font-size: 35px;
 }
 
 #list {
