@@ -9,9 +9,9 @@
 # https://github.com/docker/awesome-compose
 services:
   app:
-    build:
-      context: .
-      target: final
+    build: .
+    env_file:
+      - .env
     # If your application exposes a port, uncomment the following lines and change
     # the port numbers as needed. The first number is the host port and the second
     # is the port inside the container.

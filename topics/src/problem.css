@@ -76,7 +76,7 @@ h1 {
     vertical-align: middle;
 }
 
-#type, #difficulty {
+#type, #difficulty, #p_type, #p_difficulty {
     font-size: 24px;
     margin-bottom: 10px;
     color: white;
