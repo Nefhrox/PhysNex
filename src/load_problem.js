@@ -125,8 +125,8 @@ async function setup_next_link(current_problem)
 
 function setup_return_link(problem) 
 {
-    const topicPage = `../../${problem.topic}.html`.toLowerCase();
-    const subTopicPage = `../${problem.sub_topic}.html`.toLowerCase();
+    const topicPage = `${problem.topic}.html`.toLowerCase();
+    const subTopicPage = `${problem.sub_topic}.html`.toLowerCase();
 
     document.getElementById('return_topic').href = topicPage;
     document.getElementById('return_topic').innerText = `Back to ${problem.topic.replace(/_/g, ' ')}`;

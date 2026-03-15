@@ -3,32 +3,33 @@ const supabaseKey = 'sb_publishable_8zStLSmxvToxZLBuMkApag_Qc91Wd3V';
 const Supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 async function load_sub_topic() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const subTopicId = urlParams.get('id'); 
+    const url_params = new URLSearchParams(window.location.search);
+    const sub_topic_id = url_params.get('id'); 
 
-    if (!subTopicId) {
+    if (!sub_topic_id) {
         console.error("Id error");
         document.getElementById('sub_topic').innerText = "Id element error";
         return;
     }
 
-    const { data: subTopicData, error } = await Supabase
+    const { data: sub_topic_data, error } = await Supabase
         .from('sub_topics')
         .select('*')
-        .eq('id', subTopicId) 
+        .eq('id', sub_topic_id) 
         .single();
 
-    if (error || !subTopicData) {
+    if (error || !sub_topic_data) {
         console.error("Error loading sub-topic:", error);
         document.getElementById('sub_topic').innerText = "Sub-topic not found";
         return;
     }
 
-    const topicTitle = subTopicData.topic.replace(/_/g, ' ');
-    const subTopicTitle = subTopicData.sub_topic.replace(/_/g, ' ');
+    console.log("Sub-topic data:", sub_topic_data);
+    
+    const sub_topic_text = sub_topic_data.name.replace(/_/g, " ");
 
-    document.getElementById('sub_topic').innerText = `${topicTitle} - ${subTopicTitle}`;
+    document.getElementById('sub_topic').innerText = sub_topic_text;
 
 }
 
-window.onload = loadSubTopic;
+window.onload = load_sub_topic;

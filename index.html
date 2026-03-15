@@ -6,6 +6,7 @@
     <title>PhysNex</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
@@ -23,7 +24,7 @@
 <!--Search bar-->
 
 <div class="search">
-    <input type="search" id="search_bar" placeholder="Search for problems, topics or sub-topics" oninput="performSearch(this.value)">
+    <input type="search" id="search_bar" placeholder="Search for problems, topics or sub-topics" oninput="perform_search(this.value)">
 </div>
 
 <div id="search_results"></div>
