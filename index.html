@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./src/load_catalog.js" type="module"></script>
     <link rel="stylesheet" href="./styles/style.css">
 </head>
 
@@ -37,118 +38,8 @@
 
 <!-- Topics and sub-topics-->
 
-<ol>
-    <li class="topic">
-        <div class="topic_header">
-            <a href="./topics/Mechanics/Mechanics.html">Mechanics</a>
-            <img class="topic_icon" src="./styles/mechanics.png" alt="Mechanics icon">
-        </div>
-        <ul>
-            <li class="sub_topic"><a href="./topics/Mechanics/Dynamics/Dynamics.html" class="sub_topic">Dynamics</a></li>
-            <li class="sub_topic"><a href="./topics/Mechanics/Work_and_Energy/Work_and_Energy.html" class="sub_topic">Work and energy</a></li>
-            <li class="sub_topic"><a href="./topics/Mechanics/Power/Power.html" class="sub_topic">Power</a></li>
-            <li class="sub_topic"><a href="./topics/Mechanics/Momentum_and_Impulse/Momentum_and_Impulse.html" class="sub_topic">Momentum and impulse</a></li>
-            <li class="sub_topic"><a href="./topics/Mechanics/Circular_Motion/Circular_Motion.html" class="sub_topic">Circular motion</a></li>
-            <li class="sub_topic"><a href="./topics/Mechanics/Gravitation/Gravitation.html" class="sub_topic">Gravitation</a></li>
-            <li class="sub_topic"><a href="./topics/Mechanics/Statics/Statics.html" class="sub_topic">Statics and equilibrium</a></li>
-            <li class="sub_topic"><a href="./topics/Mechanics/Fluid_Mechanics/Fluid_Mechanics.html" class="sub_topic">Fluid mechanics</a></li>
-            <li class="sub_topic"><a href="./topics/Mechanics/Rotational_Motion/Rotational_Motion.html" class="sub_topic">Rotational motion</a></li>
-            <li class="sub_topic"><a href="./topics/Mechanics/Newton_s_laws/Newton_s_laws.html" class="sub_topic">Newton's laws</a></li> 
-        </ul>
-    </li>
+<ol id="data_container">
 
-    <li class="topic">
-        <div class="topic_header">
-            <a href="./topics/Molecular_physics_and_Thermodynamics/Molecular_physics_and_Thermodynamics.html">Molecular physics and Thermodynamics</a>
-            <img class="topic_icon" src="./styles/molecular.png" alt="Molecular physics icon">
-        </div>
-        <ul>
-            <li class="sub_topic"><a href="./topics/Molecular_physics_and_Thermodynamics/Ideal_Gas/Ideal_Gas.html" class="sub_topic">Ideal gas model</a></li>
-            <li class="sub_topic"><a href="./topics/Molecular_physics_and_Thermodynamics/Equation_of_State/Equation_of_State.html" class="sub_topic">Equation of state</a></li>
-            <li class="sub_topic"><a href="./topics/Molecular_physics_and_Thermodynamics/Kinetic_Theory/Kinetic_Theory.html" class="sub_topic">Kinetic theory</a></li>
-            <li class="sub_topic"><a href="./topics/Molecular_physics_and_Thermodynamics/Internal_Energy/Internal_Energy.html" class="sub_topic">Internal energy</a></li>
-            <li class="sub_topic"><a href="./topics/Molecular_physics_and_Thermodynamics/Heat_Transfer/Heat_Transfer.html" class="sub_topic">Heat transfer</a></li>
-            <li class="sub_topic"><a href="./topics/Molecular_physics_and_Thermodynamics/Processes/Processes.html" class="sub_topic">Thermodynamic processes</a></li>
-        </ul>
-    </li>
-
-    <li class="topic">
-        <div class="topic_header">
-            <a href="./topics/Electricity_and_Magnetism/Electricity_and_Magnetism.html">Electricity and Magnetism</a>
-            <img class="topic_icon" src="./styles/electricity.png" alt="Electricity icon">
-        </div>
-        <ul>
-            <li class="sub_topic"><a href="./topics/Electricity_and_Magnetism/Electrostatics/Electrostatics.html" class="sub_topic">Electrostatics</a></li>
-            <li class="sub_topic"><a href="./topics/Electricity_and_Magnetism/Electric_Potential/Electric_Potential.html" class="sub_topic">Electric potential</a></li>
-            <li class="sub_topic"><a href="./topics/Electricity_and_Magnetism/Capacitors/Capacitors.html" class="sub_topic">Capacitors</a></li>
-            <li class="sub_topic"><a href="./topics/Electricity_and_Magnetism/Magnetic_Fields/Magnetic_Fields.html" class="sub_topic">Magnetic fields</a></li>
-            <li class="sub_topic"><a href="./topics/Electricity_and_Magnetism/Ampere_Law/Ampere_Law.html" class="sub_topic">Ampere's law</a></li>
-            <li class="sub_topic"><a href="./topics/Electricity_and_Magnetism/Induction/Induction.html" class="sub_topic">Electromagnetic induction</a></li>
-        </ul>
-    </li>
-
-    <li class="topic">
-        <div class="topic_header">
-            <a href="./topics/Optics/Optics.html">Optics</a>
-            <img class="topic_icon" src="./styles/optics.png" alt="Optics icon">
-        </div>
-        <ul>
-            <li class="sub_topic"><a href="./topics/Optics/Geometrical_Optics/Geometrical_Optics.html" class="sub_topic">Geometrical optics</a></li>
-            <li class="sub_topic"><a href="./topics/Optics/Lenses_and_Mirrors/Lenses_and_Mirrors.html" class="sub_topic">Lenses and mirrors</a></li>
-            <li class="sub_topic"><a href="./topics/Optics/Diffraction/Diffraction.html" class="sub_topic">Diffraction</a></li>
-            <li class="sub_topic"><a href="./topics/Optics/Interference/Interference.html" class="sub_topic">Interference</a></li>
-            <li class="sub_topic"><a href="./topics/Optics/Dispersion/Dispersion.html" class="sub_topic">Dispersion</a></li>
-        </ul>
-    </li>
-
-    <li class="topic">
-        <div class="topic_header">
-            <a href="./topics/Oscillations_and_Waves/Oscillations_and_Waves.html">Oscillations and Waves</a>
-            <img class="topic_icon" src="./styles/oscillations.png" alt="Oscillations icon">
-        </div>
-        <ul>
-            <li class="sub_topic"><a href="./topics/Oscillations_and_Waves/Harmonic_Motion/Harmonic_Motion.html" class="sub_topic">Harmonic motion</a></li>
-            <li class="sub_topic"><a href="./topics/Oscillations_and_Waves/Damped_Oscillations/Damped_Oscillations.html" class="sub_topic">Damped oscillations</a></li>
-            <li class="sub_topic"><a href="./topics/Oscillations_and_Waves/Forced_Oscillations/Forced_Oscillations.html" class="sub_topic">Forced oscillations and resonance</a></li>
-            <li class="sub_topic"><a href="./topics/Oscillations_and_Waves/Mechanical_Waves/Mechanical_Waves.html" class="sub_topic">Mechanical waves</a></li>
-            <li class="sub_topic"><a href="./topics/Oscillations_and_Waves/Wave_Parameters/Wave_Parameters.html" class="sub_topic">Wave parameters</a></li>
-        </ul>
-    </li>
-
-    <li class="topic">
-        <div class="topic_header">
-            <a href="./topics/Quantum_physics/Quantum_physics.html">Quantum physics</a>
-            <img class="topic_icon" src="./styles/quantum.png" alt="Quantum icon">
-        </div>
-        <ul>
-            <li class="sub_topic"><a href="./topics/Quantum_physics/Photoelectric_Effect/Photoelectric_Effect.html" class="sub_topic">Photoelectric effect</a></li>
-        </ul>
-    </li>
-
-    <li class="topic">
-        <div class="topic_header">
-            <a href="./topics/Nuclear_physics/Nuclear_physics.html">Nuclear physics</a>
-            <img class="topic_icon" src="./styles/nuclear.png" alt="Nuclear icon">
-        </div>
-        <ul>
-            <li class="sub_topic"><a href="./topics/Nuclear_physics/Radioactivity/Radioactivity.html" class="sub_topic">Radioactivity</a></li>
-            <li class="sub_topic"><a href="./topics/Nuclear_physics/Nuclear_Reactions/Nuclear_Reactions.html" class="sub_topic">Nuclear reactions</a></li>
-            <li class="sub_topic"><a href="./topics/Nuclear_physics/Fission/Fission.html" class="sub_topic">Fission</a></li>
-            <li class="sub_topic"><a href="./topics/Nuclear_physics/Binding_Energy/Binding_Energy.html" class="sub_topic">Mass defect and binding energy</a></li>
-        </ul>
-    </li>
-
-    <li class="topic">
-        <div class="topic_header">
-            <a href="./topics/Modern_physics/Modern_physics.html">Modern physics</a>
-            <img class="topic_icon" src="./styles/modern.png" alt="Modern physics icon">
-        </div>
-        <ul>
-            <li class="sub_topic"><a href="./topics/Modern_physics/Relativity/Relativity.html" class="sub_topic">Special relativity</a></li>
-            <li class="sub_topic"><a href="./topics/Modern_physics/Elementary_Particles/Elementary_Particles.html" class="sub_topic">Elementary particles</a></li>
-            <li class="sub_topic"><a href="./topics/Modern_physics/Standard_Model/Standard_Model.html" class="sub_topic">Standard model</a></li>
-        </ul>
-    </li>
 </ol>
 
 

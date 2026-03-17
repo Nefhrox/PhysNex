@@ -1,7 +1,7 @@
 const supabaseUrl = 'https://fzqehoqdprmyjycgexna.supabase.co';
 const supabaseKey = 'sb_publishable_8zStLSmxvToxZLBuMkApag_Qc91Wd3V'; 
-const { createClient } = supabase; 
-const Supabase = createClient(supabaseUrl, supabaseKey);
+
+export const Supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
 const MAX_RESULTS = 10;
 
@@ -23,7 +23,7 @@ window.perform_search = async function(query)
         .from('problems')
         .select('id, problem_number, topic, sub_topic, difficulty, type')
         .or(`problem_text.ilike.%${lower_query}%, topic.ilike.%${lower_query}%, sub_topic.ilike.%${lower_query}%`)
-        .limit(5)   
+        .limit(7)   
 
         const promise_sub_topics = Supabase
         .from('sub_topics')
@@ -108,7 +108,7 @@ function search_results(results, container)
         const safe_text = (display_text || "").replace(/_/g, ' ');
         const safe_sub_topic = (result.sub_topic || "").replace(/_/g, ' ');
 
-        html += `<div class="search_results"> <span class="search-label ${label_class}">[${label_text}]</span>
+        html += `<div class="search_results"> <span class="search-label_${label_class}">[${label_text}]</span>
         <a href="${url}" class="search-link">${safe_text}</a>${result.category === "problem" ? `<span class="search_info"> in ${safe_sub_topic}</span>` : ''}</div>`;
     });
 

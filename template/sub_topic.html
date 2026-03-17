@@ -5,13 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../src/load_sub_topic.js"></script>
+    <script src="../src/load_sub_topic.js" type="module"></script>
+    <title id="title"></title>
 
 </head>
 
 <body>
     
-<p id="sub_topic" style="color: white;">S_t:test</p>
+<h1 id="sub_topic">Problems on <span id="sub_topic_name"></span></h1>
+
+<h3 id="list">List of problems on <span id="list_sub_topic"></span></h3>
+
+<div id="problems_container">
+
+</div>
+
+<h1 class="return"><a href="" id="return_topic">⬅ Back to <span id="sub_topic_name"></span> page</a></h1>
+<h1 class="return_main"><a href="../../index.html">⬅ Back to main page</a></h1>
+
+<h2 class="footer">About:</h2>
+<p class="link"><a href="https://discord.gg/xFGw5Spd5V" target="_blank"><img src="../styles/discord_icon.png" id = "discord_icon" alt="Discord">Discord</a></p>
+<p class="link"><a href="mailto:physnex@gmail.com" target="_blank"><img src="../styles/gmail_icon.png" class="gmail_icon" alt="Gmail">Gmail</a></p>
 
 </body>
 </html>

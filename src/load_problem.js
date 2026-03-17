@@ -1,7 +1,4 @@
-const supabaseUrl = 'https://fzqehoqdprmyjycgexna.supabase.co';
-const supabaseKey = 'sb_publishable_8zStLSmxvToxZLBuMkApag_Qc91Wd3V'; 
-const { createClient } = supabase; 
-const Supabase = createClient(supabaseUrl, supabaseKey);
+import { Supabase } from './script.js';
 
 async function load_problem() 
 {

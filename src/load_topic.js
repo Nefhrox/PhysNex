@@ -1,6 +1,4 @@
-const supabaseUrl = 'https://fzqehoqdprmyjycgexna.supabase.co';
-const supabaseKey = 'sb_publishable_8zStLSmxvToxZLBuMkApag_Qc91Wd3V'; 
-const Supabase = supabase.createClient(supabaseUrl, supabaseKey);
+import { Supabase } from './script.js';
 
 async function load_topic() {
     const url_params = new URLSearchParams(window.location.search);
