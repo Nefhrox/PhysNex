@@ -49,7 +49,7 @@ async function load_problem()
 
 
     const status_button = document.getElementById('not_completed');
-    const status_key = `${problem.topic}/${problem.sub_topic}/problem_${problem.problem_number}_status`;
+    const status_key = `${problem.sub_topic}/problem_${problem.problem_number}_status`;
     
     
     const currentStatus = localStorage.getItem(status_key);
