@@ -236,3 +236,13 @@ a {
 a:hover {
     color: rgb(0, 226, 0)
 }
+
+.completed {
+    color: rgb(0, 226, 0);
+    font-weight: bold;
+}
+
+.not_completed {
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+}

@@ -59,6 +59,7 @@ window.perform_search = async function(query)
                 problem_number: prob.problem_number, 
                 topic: prob.topic, 
                 sub_topic: prob.sub_topic, 
+                sub_topic_id: prob.sub_topic_id,
                 difficulty: prob.difficulty, 
                 type: prob.type 
             }));
@@ -83,33 +84,50 @@ function search_results(results, container)
         let display_text = result.name || "";
         let label_text = "";
 
-        if (result.category === "problem" || result.type === "problem") 
+        if (result.category === "problem") 
         {
+
             url = `./template/problem.html?id=${result.id}`;
             label_class = "problem-label";
             display_text = `Problem ${result.problem_number}`;
-            label_text = result.prob_type || "problem";
+            label_text = `[${result.type}]` || "";
         }
         else if (result.type === "sub_topic") 
         {
             url = `./template/sub_topic.html?id=${result.id}`;
             label_class = "sub-topic-label";
             display_text = result.name || "Error on sub-topic name";
-            label_text = "sub-topic";
+            label_text = "[sub-topic]";
         }
         else if (result.type === "topic") 
         {
             url = `./template/topic.html?id=${result.id}`;
             label_class = "topic-label";
             display_text = result.name || "Error on topic name";
-            label_text = "topic";
+            label_text = "[topic]";
         }
+
+            let storage_key = `${result.sub_topic}/problem_${result.problem_number}_status`;
+            let status = localStorage.getItem(storage_key);
+            let status_css = status;
+
+            if (status === "Completed") 
+            {
+                status = "- Completed";
+                status_css = "completed";
+            }
+            else 
+            {
+                status = "- Not Completed";
+                status_css = "not_completed";
+            }
+
 
         const safe_text = (display_text || "").replace(/_/g, ' ');
         const safe_sub_topic = (result.sub_topic || "").replace(/_/g, ' ');
 
-        html += `<div class="search_results"> <span class="search-label_${label_class}">[${label_text}]</span>
-        <a href="${url}" class="search-link">${safe_text}</a>${result.category === "problem" ? `<span class="search_info"> in ${safe_sub_topic}</span>` : ''}</div>`;
+        html += `<div class="search_results"> <span class="search-label_${label_class}">${label_text}</span>
+        <a href="${url}" class="search-link">${safe_text}</a>${result.category === "problem" ? `<span class="search_info"> in ${safe_sub_topic} <span class="status ${status_css}">${status}</span></span>` : ''}</div>`;
     });
 
     html += "</div>";
