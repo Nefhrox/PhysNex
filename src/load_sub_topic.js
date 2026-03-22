@@ -49,19 +49,23 @@ async function load_sub_topic() {
         const local_storage_key = `${sub_topic_data.name}/problem_${prob.problem_number}_status`;
         let status = localStorage.getItem(local_storage_key);
 
+        let status_css = "";
+
         console.log(`Status for problem ${prob.problem_number}:`, status);
         console.log(`Local storage key: ${local_storage_key}`);
 
         if (status === "Completed") 
         {
             status = "- Completed";
+            status_css = "completed_problem";
         }
         else 
         {
             status = "- Not completed";
+            status_css = "not_completed_problem";
         }
 
-        html += `<p class="problem"><a href="./problem.html?id=${prob.id}" class="a_problem">Problem ${prob.problem_number}</a><span class="status"> ${status}</span></li>`;
+        html += `<p class="problem"><a href="./problem.html?id=${prob.id}" class="a_problem">Problem ${prob.problem_number}</a><span class="${status_css}"> ${status}</span></li>`;
     });
 
     document.getElementById('problems_container').innerHTML = html;

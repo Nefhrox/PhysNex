@@ -41,8 +41,6 @@ async function load_problem()
     document.getElementById('answer').style.display = 'none';
     document.getElementById('solution').style.display = 'none';
 
-    setup_next_link(problem);
-
     setup_return_link(problem);
 
     MathJax.typesetPromise();
@@ -51,10 +49,43 @@ async function load_problem()
     const status_button = document.getElementById('not_completed');
     const status_key = `${problem.sub_topic}/problem_${problem.problem_number}_status`;
     
+
+    const next_storage_key = `${problem.sub_topic}/problem_${problem.problem_number + 1}_status`;
+    let next_prob_status = " ";
+
+    if (localStorage.getItem(next_storage_key) === "Completed")
+    {
+        next_prob_status = "Completed";
+    }
+    else 
+    {
+        next_prob_status = "Not completed";
+    }
+
+
+    const prev_storage_key = `${problem.sub_topic}/problem_${problem.problem_number - 1}_status`;
+    let prev_prob_status = " ";
+
+    if (problem.problem_number > 1)
+    {
+
+        if (localStorage.getItem(prev_storage_key) === "Completed")
+        {
+            prev_prob_status = "Completed";
+        }
+        else 
+        {
+            prev_prob_status = "Not completed";
+        }
+    }
+    else
+    {
+        prev_prob_status = "";
+    }
+
+    const current_status = localStorage.getItem(status_key);
     
-    const currentStatus = localStorage.getItem(status_key);
-    
-    if (currentStatus === "Completed") 
+    if (current_status === "Completed") 
     {
         status_button.innerText = "Completed";
         status_button.classList.remove("not_completed");
@@ -77,9 +108,13 @@ async function load_problem()
             status_button.classList.add("completed");
         }
     };
+
+    await setup_next_link(problem, prev_prob_status, next_prob_status);
 }
 
-async function setup_next_link(current_problem) 
+
+
+async function setup_next_link(current_problem, prev_prob_status, next_prob_status) 
 {
     const { data: next_prob } = await Supabase
         .from('problems')
@@ -104,7 +139,7 @@ async function setup_next_link(current_problem)
     if (next_prob) 
     {
         next_link.href = `problem.html?id=${next_prob.id}`;
-        next_link.innerText = `Next problem: difficulty ${next_prob.difficulty}/10; type ${next_prob.type} ➡`;
+        next_link.innerText = `Next problem: difficulty ${next_prob.difficulty}/10; type ${next_prob.type}; ${next_prob_status} ➡`;
     } else 
     {
         next_link.style.display = 'none'; 
@@ -113,23 +148,38 @@ async function setup_next_link(current_problem)
     if (prev_prob) 
     {
         prev_link.href = `problem.html?id=${prev_prob.id}`;
-        prev_link.innerText = `⬅ Previous problem: difficulty ${prev_prob.difficulty}/10; type ${prev_prob.type}`;
+        prev_link.innerText = `⬅ Previous problem: difficulty ${prev_prob.difficulty}/10; type ${prev_prob.type}; ${prev_prob_status}`;
     } else 
     {
         prev_link.style.display = 'none';
     }
 }
 
+
+
 function setup_return_link(problem) 
 {
-    const topicPage = `${problem.topic}.html`.toLowerCase();
-    const subTopicPage = `${problem.sub_topic}.html`.toLowerCase();
-
-    document.getElementById('return_topic').href = topicPage;
-    document.getElementById('return_topic').innerText = `Back to ${problem.topic.replace(/_/g, ' ')}`;
     
-    document.getElementById('return_sub-topic').href = subTopicPage;
-    document.getElementById('return_sub-topic').innerText = `Back to ${problem.sub_topic.replace(/_/g, ' ')}`;
+    const sub_topic_name_link = document.getElementById('sub_topic_name_link');
+    const topic_name_link = document.getElementById('topic_name_link');
+
+    sub_topic_name_link.innerText = problem.sub_topic.replace(/_/g, " ");
+    topic_name_link.innerText = problem.topic.replace(/_/g, " ");
+
+    const a_return_sub_topic = document.getElementById('return_sub_topic');
+    const a_return_topic = document.getElementById('return_topic');
+
+    a_return_sub_topic.href = `./sub_topic.html?id=${problem.sub_topic_id}`;
+    a_return_topic.href = `./topic.html?id=${problem.topic_id}`;
+    
+    const span_sub_topic_name = document.getElementById('sub_topic_name_link');
+    const span_topic_name = document.getElementById('topic_name_link');
+
+    span_sub_topic_name.innerText = problem.sub_topic.replace(/_/g, " ");
+    span_topic_name.innerText = problem.topic.replace(/_/g, " ");
+
+    console.log(span_sub_topic_name.innerText);
+    console.log(span_topic_name.innerText);     
 }
 
 window.onload = load_problem;
