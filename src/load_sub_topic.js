@@ -12,7 +12,7 @@ async function load_sub_topic() {
 
     const { data: sub_topic_data, error } = await Supabase
         .from('sub_topics')
-        .select('id, name')
+        .select('id, name, topic_id')
         .eq('id', sub_topic_id) 
         .single();
 
@@ -24,7 +24,7 @@ async function load_sub_topic() {
 
     const { data: prob_data, error: prob_error } = await Supabase
         .from('problems')
-        .select('id, sub_topic, problem_number, type, difficulty, problem_text, solution, answer, sub_topic_id')
+        .select('id, sub_topic, problem_number, type, difficulty, problem_text, solution, answer, topic, sub_topic_id')
         .eq('sub_topic_id', sub_topic_data.id);
 
     if (prob_error || !prob_data) {
@@ -41,6 +41,9 @@ async function load_sub_topic() {
 
     document.getElementById('sub_topic').innerText = sub_topic_text;
     document.title = sub_topic_text;
+
+    document.getElementById("return_topic").href = `./topic.html?id=${sub_topic_data.topic_id}`;
+    document.getElementById("topic_name").innerText = prob_data[0].topic.replace(/_/g, " ");
 
     let html = "";
 
@@ -65,7 +68,8 @@ async function load_sub_topic() {
             status_css = "not_completed_problem";
         }
 
-        html += `<p class="problem"><a href="./problem.html?id=${prob.id}" class="a_problem">Problem ${prob.problem_number}</a><span class="${status_css}"> ${status}</span></li>`;
+        html += `<p class="problem"><a href="./problem.html?id=${prob.id}" class="a_problem">Problem ${prob.problem_number} type: ${prob.type}, difficulty: ${prob.difficulty}/10</a><span class="${status_css}">${status}</span></li>`;
+        console.log("status", status);
     });
 
     document.getElementById('problems_container').innerHTML = html;

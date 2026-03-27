@@ -52,19 +52,25 @@ async function load_problem()
 
     const next_storage_key = `${problem.sub_topic}/problem_${problem.problem_number + 1}_status`;
     let next_prob_status = " ";
+    let next_prob_status_css = " ";
 
     if (localStorage.getItem(next_storage_key) === "Completed")
     {
         next_prob_status = "Completed";
+        next_prob_status_css = "completed_problem";
+        console.log("Next problem status:", next_prob_status_css);
     }
     else 
     {
         next_prob_status = "Not completed";
+        next_prob_status_css = "not_completed_problem";
+        console.log("Next problem status:", next_prob_status_css);
     }
 
 
     const prev_storage_key = `${problem.sub_topic}/problem_${problem.problem_number - 1}_status`;
     let prev_prob_status = " ";
+    let prev_prob_status_css = " ";
 
     if (problem.problem_number > 1)
     {
@@ -72,10 +78,12 @@ async function load_problem()
         if (localStorage.getItem(prev_storage_key) === "Completed")
         {
             prev_prob_status = "Completed";
+            prev_prob_status_css = "completed_problem";
         }
         else 
         {
             prev_prob_status = "Not completed";
+            prev_prob_status_css = "not_completed_problem";
         }
     }
     else
@@ -87,7 +95,7 @@ async function load_problem()
     
     if (current_status === "Completed") 
     {
-        status_button.innerText = "Completed";
+        status_button.innerHTML = "Completed";
         status_button.classList.remove("not_completed");
         status_button.classList.add("completed"); 
     }
@@ -97,24 +105,24 @@ async function load_problem()
         if (localStorage.getItem(status_key) === "Completed") 
         {
             localStorage.setItem(status_key, "Not completed");
-            status_button.innerText = "Not completed";
+            status_button.innerHTML = "Not completed";
             status_button.classList.remove("completed");
             status_button.classList.add("not_completed");
         } else 
         {
             localStorage.setItem(status_key, "Completed");
-            status_button.innerText = "Completed";
+            status_button.innerHTML = "Completed";
             status_button.classList.remove("not_completed");
             status_button.classList.add("completed");
         }
     };
 
-    await setup_next_link(problem, prev_prob_status, next_prob_status);
+    await setup_next_link(problem, prev_prob_status, next_prob_status, next_prob_status_css, prev_prob_status_css);
 }
 
 
 
-async function setup_next_link(current_problem, prev_prob_status, next_prob_status) 
+async function setup_next_link(current_problem, prev_prob_status, next_prob_status, next_prob_status_css, prev_prob_status_css) 
 {
     const { data: next_prob } = await Supabase
         .from('problems')
@@ -139,7 +147,7 @@ async function setup_next_link(current_problem, prev_prob_status, next_prob_stat
     if (next_prob) 
     {
         next_link.href = `problem.html?id=${next_prob.id}`;
-        next_link.innerText = `Next problem: difficulty ${next_prob.difficulty}/10; type ${next_prob.type}; ${next_prob_status} ➡`;
+        next_link.innerHTML = `Next problem: difficulty ${next_prob.difficulty}/10; type ${next_prob.type}; <span class="${next_prob_status_css}">${next_prob_status}</span> ➡`;
     } else 
     {
         next_link.style.display = 'none'; 
@@ -148,7 +156,7 @@ async function setup_next_link(current_problem, prev_prob_status, next_prob_stat
     if (prev_prob) 
     {
         prev_link.href = `problem.html?id=${prev_prob.id}`;
-        prev_link.innerText = `⬅ Previous problem: difficulty ${prev_prob.difficulty}/10; type ${prev_prob.type}; ${prev_prob_status}`;
+        prev_link.innerHTML = `⬅ Previous problem: difficulty ${prev_prob.difficulty}/10; type ${prev_prob.type}; <span class="${prev_prob_status_css}">${prev_prob_status}</span>`;
     } else 
     {
         prev_link.style.display = 'none';

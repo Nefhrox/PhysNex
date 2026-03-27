@@ -120,6 +120,7 @@ h1 {
     font-size: 20px;
     background-color: rgba(255, 0, 0, 0.884);
 }
+
 .completed {
     font-size: medium;
     margin-top: 10px;
@@ -127,6 +128,16 @@ h1 {
     margin-left: 15px;
     font-size: 20px;
     background-color: rgba(0, 255, 0, 0.884);
+}
+
+.completed_problem {
+    font-size: 26px;
+    color: rgba(0, 255, 0, 0.884);
+}
+
+.not_completed_problem {
+    font-size: 26px;
+    color: rgba(255, 0, 0, 0.884);
 }
 
 a {
