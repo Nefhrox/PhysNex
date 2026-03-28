@@ -43,7 +43,7 @@ a {
     font-size: 25px;
 }
 
-.topic_icon {
+.topic_image {
     width: 80px;
     height: 80px;
     object-fit: contain;
@@ -246,3 +246,4 @@ a:hover {
     color: rgb(255, 0, 0);
     font-weight: bold;
 }
+
