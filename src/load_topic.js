@@ -37,7 +37,7 @@ async function load_topic() {
     topic.sub_topics.forEach((sub_t, i) => {
 
         const is_last_el = (i === sub_topics.length - 1);
-        const is_odd = (i % 2 === 1);
+        const is_odd = (i % 2 === 0);
         let style = "";
 
         if(is_odd && is_last_el)
