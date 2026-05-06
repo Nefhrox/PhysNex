@@ -1,7 +1,7 @@
 import { Supabase } from './script.js';
 
 
-const bucket = Supabase.storage.from('style images');
+const bucket = Supabase.storage.from('structure_img');
 
 const discord_icon = bucket.getPublicUrl('discord_icon.png');
 const gmail_icon = bucket.getPublicUrl('gmail_icon.png');

@@ -17,7 +17,7 @@ async function load_catalog()
 
     let html = "";
 
-    const bucket = Supabase.storage.from('style images');
+    const bucket = Supabase.storage.from('structure_img');
 
     const logo = bucket.getPublicUrl('physnex.png');
 

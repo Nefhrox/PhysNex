@@ -41,12 +41,15 @@ formulae.forEach(formula => {
     html += `<h2 class="sub-topic">${formula.name}</h2>`;
 
     formula.formula_items.forEach(item => {
-        html += `<p class="formula_container"><span class="formula">${item.latex_code}</span> <span class="formula_dash"> — </span> <span class="formula_description">${item.description}</span></p>`;
+        html += `<p class="formula_container"><span class="formula">\\( \\pmb{${item.latex_code}} \\) </span> <span class="formula_dash"> — </span> <span class="formula_description">${item.description}</span></p>`;
     });
 });
 
 
-window.MathJax.typesetPromise();
 
 document.getElementById('formulae_container').innerHTML = html;
 document.getElementById('topic').innerText = topic_name;
+
+
+window.MathJax.typesetPromise();
+window.MathJax = { options: { enableMenu: false } };
