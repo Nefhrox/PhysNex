@@ -34,18 +34,17 @@ function show_card()
                 </div>
                 <div class="back">
                     <p class="label">${item.name}</p>
-                    <p class="text">${item.latex}</p>
+                    <p class="text">\\( ${item.latex} \\)</p>
                 </div>
             </div>
             <button class="next_card" onclick="nextCard()">Next formula →</button>
         </div>
     `;
 
-    document.getElementById("next_btn").addEventListener("click", nextCard);
 
     if (window.MathJax) 
     {
-        MathJax.typesetPromise();
+        window.MathJax.typesetPromise();
     }
 }
 
@@ -62,20 +61,48 @@ async function get_formulae() {
     try {
 
         const url_params = new URLSearchParams(window.location.search);
-        const sub_topic_id = url_params.get("sub");
+        const sub_topic_id = url_params.get("id");
 
 
-        const { data, error } = await Supabase
+
+        const { data: formula_data, error: formula_error } = await Supabase
         .from("formula_items")
-        .select("latex_code, description")
+        .select("latex_code, description, section_id")
         .eq("section_id", sub_topic_id);
 
-        if (error)
+        const { data: data_formula_sections, error: error_sections } = await Supabase
+        .from("formula_sections")
+        .select("topic_id")
+        .eq("id", sub_topic_id)
+        .single();
+
+        const { data: data_topic, error: error_topic } = await Supabase
+        .from("topics")
+        .select("name, id")
+        .eq("id", data_formula_sections.topic_id)
+        .single();
+
+        if (error_sections)
         {
-            console.error("Error on loading data ", error);
+            console.log("Error loading section data ", error_sections);
         }
 
-        const formula_get = data.map(item => ({
+        if (error_topic)
+        {
+            console.log("Error loading topic data ", error_topic);
+        }
+
+        if (formula_error)
+        {
+            console.error("Error on loading formula data ", formula_error);
+        }
+
+        const link_back_topic = document.getElementById("link_back_topic");
+        link_back_topic.href = `./recall_topic.html?id=${data_topic.id}`;
+        link_back_topic.innerText = `⬅ Back to ${data_topic.name.replace(/_/g, " ")}`;
+
+
+        const formula_get = formula_data.map(item => ({
             latex: item.latex_code,
             name: item.description
         }));
@@ -92,5 +119,5 @@ async function get_formulae() {
         console.error("Error constructing card ", error);
     }
 }
-
+window.nextCard = nextCard;
 get_formulae();

@@ -54,8 +54,6 @@ async function load_sub_topic() {
 
         let status_css = "";
 
-        console.log(`Status for problem ${prob.problem_number}:`, status);
-        console.log(`Local storage key: ${local_storage_key}`);
 
         if (status === "Completed") 
         {

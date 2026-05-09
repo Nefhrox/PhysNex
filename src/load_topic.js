@@ -22,12 +22,9 @@ async function load_topic() {
         return;
     }
 
-    console.log("Topic data:", topic);
-
     const topic_text = topic.name.replace(/_/g, ' ');
 
     document.getElementById("topic").innerHTML = topic_text;
-    document.getElementById("about_topic").innerHTML = topic_text;
     document.title = topic_text;
 
     let html = "";
@@ -44,8 +41,8 @@ async function load_topic() {
         {
             style = 'style="margin: 0px 0px 0px 58%; width: 80%;"';
         }
-
-        html += `<li class="card" ${style}><a href="../template/sub_topic.html?id=${sub_t.id}" class="sub_toppic">${sub_t.name.replace(/_/g, " ")}</a></li>`;
+        console.log(`Generating link for: ${sub_t.name}, ID in DB is: ${sub_t.id}`);
+        html += `<li class="card" ${style}><a href="./recall_sub_topic.html?id=${sub_t.id}" class="sub_toppic">${sub_t.name.replace(/_/g, " ")}</a></li>`;
 
     });
 
