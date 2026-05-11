@@ -62,47 +62,54 @@ async function get_formulae() {
 
         const url_params = new URLSearchParams(window.location.search);
         const sub_topic_id = url_params.get("id");
+        const topic_id = url_params.get("topic_id");
+        const all_topic = url_params.has("all");
 
-
-
-        const { data: formula_data, error: formula_error } = await Supabase
-        .from("formula_items")
-        .select("latex_code, description, section_id")
-        .eq("section_id", sub_topic_id);
-
-        const { data: data_formula_sections, error: error_sections } = await Supabase
-        .from("formula_sections")
-        .select("topic_id")
-        .eq("id", sub_topic_id)
-        .single();
-
-        const { data: data_topic, error: error_topic } = await Supabase
-        .from("topics")
-        .select("name, id")
-        .eq("id", data_formula_sections.topic_id)
-        .single();
-
-        if (error_sections)
-        {
-            console.log("Error loading section data ", error_sections);
-        }
-
-        if (error_topic)
-        {
-            console.log("Error loading topic data ", error_topic);
-        }
-
-        if (formula_error)
-        {
-            console.error("Error on loading formula data ", formula_error);
-        }
+        let query = Supabase.from("formula_items").select("*, formula_sections!inner(*, topics(*))");
 
         const link_back_topic = document.getElementById("link_back_topic");
-        link_back_topic.href = `./recall_topic.html?id=${data_topic.id}`;
-        link_back_topic.innerText = `⬅ Back to ${data_topic.name.replace(/_/g, " ")}`;
+
+        if (all_topic)
+        {
+            link_back_topic.style.display = "none";    
+        }
+        else if (topic_id)
+        {
+            query = query.eq("formula_sections.topic_id", topic_id);
+        }
+        else if (sub_topic_id)
+        {
+            query = query.eq("section_id", sub_topic_id);
+        }
+        const { data, error } = await query;
+        
+        if (error)
+        {
+            console.error("Error fetching formulae: ", error);
+            return;
+        }
+
+        const first_item = data[0];
+
+        if (link_back_topic)
+        {
+            if (all_topic)
+            {
+                link_back_topic.href = `./recall_topics.html`;
+                link_back_topic.innerText = "⬅ Back to formula recall";
+            }
+            else
+            {
+                const section = first_item.formula_sections;
+                const topic = section.topics;
+                link_back_topic.href = `./recall_topic.html?id=${section.topic_id}`;
+                link_back_topic.innerText = `⬅ Back to ${first_item.topics.name.replace(/_/g, " ")}`; 
+            }
+            
+        }
 
 
-        const formula_get = formula_data.map(item => ({
+        const formula_get = data.map(item => ({
             latex: item.latex_code,
             name: item.description
         }));

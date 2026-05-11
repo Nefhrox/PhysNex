@@ -12,7 +12,7 @@ async function load_sub_topic() {
 
     const { data: sub_topic_data, error } = await Supabase
         .from('sub_topics')
-        .select('id, name, topic_id')
+        .select('id, name, topic_id, topics(name)')
         .eq('id', sub_topic_id) 
         .single();
 
@@ -33,9 +33,6 @@ async function load_sub_topic() {
         return;
     }
 
-    console.log("Sub-topic data:", sub_topic_data);
-    console.log(sub_topic_data.name);
-    console.log("Problems data:", prob_data);
     
     const sub_topic_text = sub_topic_data.name.replace(/_/g, " ");
 
@@ -43,7 +40,7 @@ async function load_sub_topic() {
     document.title = sub_topic_text;
 
     document.getElementById("return_topic").href = `./topic.html?id=${sub_topic_data.topic_id}`;
-    document.getElementById("topic_name").innerText = prob_data[0].topic.replace(/_/g, " ");
+    document.getElementById("topic_name").innerText = sub_topic_data.topics.name.replace(/_/g, " ");
 
     let html = "";
 

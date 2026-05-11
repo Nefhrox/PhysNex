@@ -26,6 +26,8 @@ async function load_topic() {
 
     document.getElementById("topic").innerHTML = topic_text;
     document.title = topic_text;
+    const about_topic = document.getElementById("about_topic");
+    about_topic.innerText = topic_text;
 
     let html = "";
 
@@ -41,8 +43,7 @@ async function load_topic() {
         {
             style = 'style="margin: 0px 0px 0px 58%; width: 80%;"';
         }
-        console.log(`Generating link for: ${sub_t.name}, ID in DB is: ${sub_t.id}`);
-        html += `<li class="card" ${style}><a href="./recall_sub_topic.html?id=${sub_t.id}" class="sub_toppic">${sub_t.name.replace(/_/g, " ")}</a></li>`;
+        html += `<li class="card" ${style}><a href="./sub_topic.html?id=${sub_t.id}" class="sub_toppic">${sub_t.name.replace(/_/g, " ")}</a></li>`;
 
     });
 
