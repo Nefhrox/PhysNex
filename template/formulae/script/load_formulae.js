@@ -1,15 +1,17 @@
 import { Supabase } from '../../global_script/script.js';
 
+// get id from url parameters of the page
 const url_params = new URLSearchParams(window.location.search);
 const current_topic_id = url_params.get('id');
 
-console.log("current_topic_id", current_topic_id);
 
 if (!current_topic_id)
 {
     console.error("Topic id error");
 }
 
+
+// get data about formulae and topics 
 
 const { data: formulae, error: formulae_error } = await Supabase
 .from('formula_sections')
@@ -23,19 +25,24 @@ const { data: topic_data, error: topic_error } = await Supabase
 .single();
 
 
+// replace "_" with " "
 const topic_name = topic_data.name.replace(/_/g, " ");
+
 
 if (formulae_error)
 {
-    console.log("Error on formulae data ", formulae_error);
+    console.log("Formulae error", formulae_error);
 }
 
 if (topic_error) 
 {
-    console.error("Error on topic data ", topic_error);
+    console.error("Topic error", topic_error);
 }
 
 let html = ""; 
+
+
+// go through each sub-topic
 
 formulae.forEach(formula => {
     html += `<h2 class="sub-topic">${formula.name}</h2>`;
@@ -52,4 +59,3 @@ document.getElementById('topic').innerText = topic_name;
 
 
 window.MathJax.typesetPromise();
-window.MathJax = { options: { enableMenu: false } };

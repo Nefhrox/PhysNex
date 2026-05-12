@@ -1,14 +1,20 @@
 import { Supabase } from '../../global_script/script.js';
 
-async function load_sub_topic() {
+async function load_sub_topic() 
+{
+    // get sub-topic id from url
+
     const url_params = new URLSearchParams(window.location.search);
     const sub_topic_id = url_params.get('id'); 
 
-    if (!sub_topic_id) {
+    if (!sub_topic_id) 
+    {
         console.error("Id error");
         document.getElementById('sub_topic').innerText = "Id element error";
         return;
     }
+
+    // get sub-topic data (name, topic name etc.)
 
     const { data: sub_topic_data, error } = await Supabase
         .from('sub_topics')
@@ -16,23 +22,29 @@ async function load_sub_topic() {
         .eq('id', sub_topic_id) 
         .single();
 
-    if (error || !sub_topic_data) {
-        console.error("Error loading sub-topic:", error);
+    if (error || !sub_topic_data) 
+    {
+        console.error("Sub-topic", error);
         document.getElementById('sub_topic').innerText = "Sub-topic not found";
         return;
     }
+
+    // get data about problems in current sub-topic
 
     const { data: prob_data, error: prob_error } = await Supabase
         .from('problems')
         .select('id, sub_topic, problem_number, type, difficulty, problem_text, solution, answer, topic, sub_topic_id')
         .eq('sub_topic_id', sub_topic_data.id);
 
-    if (prob_error || !prob_data) {
+    if (prob_error || !prob_data) 
+    {
         console.error("Error loading problems:", prob_error);
         document.getElementById('error_container').innerText = "Problems not found";
         return;
     }
 
+
+    // setup link to topic
     
     const sub_topic_text = sub_topic_data.name.replace(/_/g, " ");
 
@@ -45,6 +57,8 @@ async function load_sub_topic() {
     let html = "";
 
     prob_data.forEach(prob => {
+
+        // get problem status form local storage
 
         const local_storage_key = `${sub_topic_data.name}/problem_${prob.problem_number}_status`;
         let status = localStorage.getItem(local_storage_key);

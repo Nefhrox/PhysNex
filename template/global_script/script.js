@@ -19,6 +19,9 @@ window.perform_search = async function(query)
 
     try 
     {
+
+        // search for mathcing topics, sub-topic, problems
+
         const promise_problems = Supabase
         .from('problems')
         .select('id, problem_number, topic, sub_topic, difficulty, type')
@@ -69,9 +72,10 @@ window.perform_search = async function(query)
     }
     catch (error)
     {
-        console.error("Error on collecting data:", error);
+        console.error("Search error", error);
     }
 };
+
 
 
 function search_results(results, container) 
@@ -107,6 +111,8 @@ function search_results(results, container)
             label_text = "[topic]";
         }
 
+            // local storage table to check if user already completed problem
+
             let storage_key = `${result.sub_topic}/problem_${result.problem_number}_status`;
             let status = localStorage.getItem(storage_key);
             let status_css = status;
@@ -122,6 +128,7 @@ function search_results(results, container)
                 status_css = "not_completed";
             }
 
+        // replace "_" with " " 
 
         const safe_text = (display_text || "").replace(/_/g, ' ');
         const safe_sub_topic = (result.sub_topic || "").replace(/_/g, ' ');

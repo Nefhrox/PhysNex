@@ -1,14 +1,20 @@
 import { Supabase } from '../../global_script/script.js';
 
-async function load_topic() {
+async function load_topic() 
+{
+    // get topic id from url
+
     const url_params = new URLSearchParams(window.location.search);
     const topic_id = url_params.get('id'); 
 
-    if (!topic_id) {
+    if (!topic_id) 
+    {
         console.error("No id", topic_id.error);
         document.getElementById('topic').innerText = "Id element error";
         return;
     }
+
+    // get data about topic from database (name, sub-topics)
 
     const {data: topic, error: topics_error} = await Supabase
     .from('topics')
@@ -16,7 +22,8 @@ async function load_topic() {
     .eq('id', topic_id)
     .single();
 
-    if (topics_error || !topic) {
+    if (topics_error || !topic) 
+    {
         console.error("Topic error ", topics_error);
         document.getElementById('topic').innerText = "Topic not found";
         return;
@@ -29,6 +36,8 @@ async function load_topic() {
 
     let href_link = "./recall_sub_topic.html";
 
+    // if it is a page about problems there will be text "list of sub-topics about $topic"
+
     const about_topic = document.getElementById("about_topic");
     if (about_topic)
     {
@@ -39,6 +48,7 @@ async function load_topic() {
     let html = "";
 
     const sub_topics = topic.sub_topics;
+    
 
     topic.sub_topics.forEach((sub_t, i) => {
 
@@ -46,8 +56,9 @@ async function load_topic() {
         const is_odd = (i % 2 === 0);
         let style = "";
 
-        if(is_odd && is_last_el)
+        if (is_odd && is_last_el)
         {
+            // if last element is odd then style properity will be added
             style = 'style="margin: 0px 0px 0px 58%; width: 80%;"';
         }
         html += `<li class="card" ${style}><a href="${href_link}?id=${sub_t.id}" class="sub_toppic">${sub_t.name.replace(/_/g, " ")}</a></li>`;

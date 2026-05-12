@@ -1,4 +1,4 @@
-import { Supabase } from './script.js';
+import { Supabase } from '../global_script/script.js';
 
 
 const bucket = Supabase.storage.from('structure_img');

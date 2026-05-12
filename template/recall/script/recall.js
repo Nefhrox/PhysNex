@@ -1,4 +1,14 @@
-import { Supabase } from '../../global_script/script.js';                  
+import { Supabase } from '../../global_script/script.js';   
+
+
+// idea is that we have a deck of cards, each of the cards is a individual formula
+// we shuffle deck with Fisher-Yates shuffle algorithm 
+// then we show cards one by one with a button to flip the card and a button to show next card
+// each card has front and back side
+// front side has name of the formula which user should try to recall the formula from memory
+// then user can click on the card to flip it and see correct formula 
+
+
 
 let current_deck = [];
 let current_deck_index = 0;
@@ -18,7 +28,7 @@ function shuffle(array)
 }
 
 
-
+// card structure 
 function show_card() 
 {
     const container = document.getElementById("formulae_container");
@@ -48,22 +58,29 @@ function show_card()
     }
 }
 
+// if we click throught the whole deck we start from the beggining
+
 function nextCard() {
     current_deck_index = (current_deck_index + 1) % current_deck.length; 
-    console.log("Current index:", current_deck_index);
     show_card();
 }
 
 
 
-async function get_formulae() {
+async function get_formulae() 
+{
     
-    try {
+    try 
+    {
+
+        // get topic id or sub-topic id or if user want to see all formulae, from url parameters
 
         const url_params = new URLSearchParams(window.location.search);
         const sub_topic_id = url_params.get("id");
         const topic_id = url_params.get("topic_id");
         const all_topic = url_params.has("all");
+
+        // get all the formulae from database or filter by topic or sub-topic what user want to see
 
         let query = Supabase.from("formula_items").select("*, formula_sections!inner(*, topics(*))");
 
@@ -85,9 +102,11 @@ async function get_formulae() {
         
         if (error)
         {
-            console.error("Error fetching formulae: ", error);
+            console.error("Error on getting data", error);
             return;
         }
+
+        // setup link to topic page and to recall page
 
         const first_item = data[0];
 
@@ -108,6 +127,8 @@ async function get_formulae() {
             
         }
 
+
+        // setup cards using data from formula
 
         const formula_get = data.map(item => ({
             latex: item.latex_code,
