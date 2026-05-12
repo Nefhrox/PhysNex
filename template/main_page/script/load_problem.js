@@ -1,4 +1,4 @@
-import { Supabase } from './script.js';
+import { Supabase } from '../../global_script/script.js';
 
 async function load_problem() 
 {
@@ -58,13 +58,13 @@ async function load_problem()
     {
         next_prob_status = "Completed";
         next_prob_status_css = "completed_problem";
-        console.log("Next problem status:", next_prob_status_css);
+
     }
     else 
     {
         next_prob_status = "Not completed";
         next_prob_status_css = "not_completed_problem";
-        console.log("Next problem status:", next_prob_status_css);
+
     }
 
 
@@ -184,10 +184,7 @@ function setup_return_link(problem)
     const span_topic_name = document.getElementById('topic_name_link');
 
     span_sub_topic_name.innerText = problem.sub_topic.replace(/_/g, " ");
-    span_topic_name.innerText = problem.topic.replace(/_/g, " ");
-
-    console.log(span_sub_topic_name.innerText);
-    console.log(span_topic_name.innerText);     
+    span_topic_name.innerText = problem.topic.replace(/_/g, " ");  
 }
 
 window.onload = load_problem;

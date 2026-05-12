@@ -1,4 +1,4 @@
-import { Supabase } from './script.js';
+import { Supabase } from '../../global_script/script.js';
 
 async function load_sub_topic() {
     const url_params = new URLSearchParams(window.location.search);

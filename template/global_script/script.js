@@ -87,21 +87,21 @@ function search_results(results, container)
         if (result.category === "problem") 
         {
 
-            url = `./template/problem.html?id=${result.id}`;
+            url = `./template/main_page/problem.html?id=${result.id}`;
             label_class = "problem-label";
             display_text = `Problem ${result.problem_number}`;
             label_text = `[${result.type}]` || "";
         }
         else if (result.type === "sub_topic") 
         {
-            url = `./template/sub_topic.html?id=${result.id}`;
+            url = `./template/main_page/sub_topic.html?id=${result.id}`;
             label_class = "sub-topic-label";
             display_text = result.name || "Error on sub-topic name";
             label_text = "[sub-topic]";
         }
         else if (result.type === "topic") 
         {
-            url = `./template/topic.html?id=${result.id}`;
+            url = `./template/main_page/topic.html?id=${result.id}`;
             label_class = "topic-label";
             display_text = result.name || "Error on topic name";
             label_text = "[topic]";

@@ -4,29 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../src/load_img.js" type="module"></script>
-    <script src="../src/recall.js" type="module"></script>
-    <link rel="stylesheet" href="./src/recall.css">
-    <script>window.MathJax = { options: { enableMenu: false} };</script> <!--  tex: { inlineMath: [['\\(', '\\)']] },-->
-    <script id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script> <!-- for writing mathematical equations-->
+    <script src="../global_script/load_img.js" type="module"></script>
+    <script src="../main_page/script/load_topic.js" type="module"></script>
+    <link rel="stylesheet" href="./style/style.css">
 </head>
 
 <body>
 
 
-<p id="formulae_container"></p>
+<h1 id="topic"></h1>
+
+<ul id="sub_topics_grid" class="grid"></ul>
 
 
 
-<h2 class="link"><a href="" id="link_back_topic"></a></h2>
-<h2 class="link"><a href="./recall.html">⬅ Back to formulae recall</a></h2>
+<p class="card" style="margin: 50px 0px 25px 10%; width: 80%;"><a href="./recall_sub_topic.html?all">All sub-topics at once</a></p>
 
-
-
-
-
-
-
+<h2 class="link"><a href="./recall.html">⬅ Back to recall page</a></h2>
 <h2 class="link"><a href="../../index.html">⬅ Back to PhysNex</a></h2>
 
 <!--Footer-->

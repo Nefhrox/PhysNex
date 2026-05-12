@@ -1,4 +1,4 @@
-import { Supabase } from './script.js';                  
+import { Supabase } from '../../global_script/script.js';                  
 
 let current_deck = [];
 let current_deck_index = 0;
@@ -103,7 +103,7 @@ async function get_formulae() {
                 const section = first_item.formula_sections;
                 const topic = section.topics;
                 link_back_topic.href = `./recall_topic.html?id=${section.topic_id}`;
-                link_back_topic.innerText = `⬅ Back to ${first_item.topics.name.replace(/_/g, " ")}`; 
+                link_back_topic.innerText = `⬅ Back to ${topic.name.replace(/_/g, " ")}`; 
             }
             
         }

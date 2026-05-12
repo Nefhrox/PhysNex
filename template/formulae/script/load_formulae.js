@@ -1,4 +1,4 @@
-import { Supabase } from '../../src/script.js';
+import { Supabase } from '../../global_script/script.js';
 
 const url_params = new URLSearchParams(window.location.search);
 const current_topic_id = url_params.get('id');

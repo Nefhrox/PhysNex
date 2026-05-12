@@ -1,4 +1,4 @@
-import { Supabase } from './script.js';
+import { Supabase } from '../../global_script/script.js';
 
 async function load_catalog()
 {
@@ -31,12 +31,12 @@ async function load_catalog()
 
         html += `<li class="topic">
         <div class="topic_header">
-        <a href="./template/topic.html?id=${topic.id}">${topic.name.replace(/_/g, " ")}</a>
+        <a href="./template/main_page/topic.html?id=${topic.id}">${topic.name.replace(/_/g, " ")}</a>
         <img src="${img_url}.png" class="topic_image"></img></div><ul>`;
         console.log("img url ", img_url);
 
         topic.sub_topics.forEach(sub_t => {
-            html += `<li class="sub_topic"><a href="./template/sub_topic.html?id=${sub_t.id}">${sub_t.name.replace(/_/g, " ")}</a></li>`;
+            html += `<li class="sub_topic"><a href="./template/main_page/sub_topic.html?id=${sub_t.id}">${sub_t.name.replace(/_/g, " ")}</a></li>`;
         });
         html += `</ul></li>`;
     });

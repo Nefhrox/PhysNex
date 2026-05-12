@@ -1,11 +1,11 @@
-import { Supabase } from './script.js';
+import { Supabase } from '../../global_script/script.js';
 
 async function load_topic() {
     const url_params = new URLSearchParams(window.location.search);
     const topic_id = url_params.get('id'); 
 
     if (!topic_id) {
-        console.error("Id error");
+        console.error("No id", topic_id.error);
         document.getElementById('topic').innerText = "Id element error";
         return;
     }
@@ -17,7 +17,7 @@ async function load_topic() {
     .single();
 
     if (topics_error || !topic) {
-        console.error("Error loading topic:", topics_error);
+        console.error("Topic error ", topics_error);
         document.getElementById('topic').innerText = "Topic not found";
         return;
     }
@@ -26,8 +26,15 @@ async function load_topic() {
 
     document.getElementById("topic").innerHTML = topic_text;
     document.title = topic_text;
+
+    let href_link = "./recall_sub_topic.html";
+
     const about_topic = document.getElementById("about_topic");
-    about_topic.innerText = topic_text;
+    if (about_topic)
+    {
+        about_topic.innerText = topic_text;
+        href_link = "./sub_topic.html";
+    }
 
     let html = "";
 
@@ -43,7 +50,7 @@ async function load_topic() {
         {
             style = 'style="margin: 0px 0px 0px 58%; width: 80%;"';
         }
-        html += `<li class="card" ${style}><a href="./sub_topic.html?id=${sub_t.id}" class="sub_toppic">${sub_t.name.replace(/_/g, " ")}</a></li>`;
+        html += `<li class="card" ${style}><a href="${href_link}?id=${sub_t.id}" class="sub_toppic">${sub_t.name.replace(/_/g, " ")}</a></li>`;
 
     });
 
