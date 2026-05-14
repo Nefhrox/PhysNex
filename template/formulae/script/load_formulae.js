@@ -45,7 +45,7 @@ let html = "";
 // go through each sub-topic
 
 formulae.forEach(formula => {
-    html += `<h2 class="sub-topic">${formula.name}</h2>`;
+    html += `<h2 class="sub-topic">${formula.name.replace(/_/g, " ")}</h2>`;
 
     formula.formula_items.forEach(item => {
         html += `<p class="formula_container"><span class="formula">\\( \\pmb{${item.latex_code}} \\) </span> <span class="formula_dash"> — </span> <span class="formula_description">${item.description}</span></p>`;
