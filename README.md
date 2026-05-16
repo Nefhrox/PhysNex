@@ -20,8 +20,4 @@ Automation scripts such as problem creator(creates all main code automatically o
 
 Page for constants and formulae 
 
-
-Current plans for this project:
-
-
 Formula recall
